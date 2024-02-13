@@ -1,0 +1,553 @@
+<div class="container text-end">
+    <button type="button" class="btn-volver" id="volverbusqueda">Volver</button>
+</div>
+<form action="https://gestor.bookingassistance.co/servicios/planes/guardar" method="POST">
+    <input type="hidden" name="_token" value="{{= it.informacion.token }}">
+    <input type="hidden" name="plan" value="{{=it.plan.detalle.id}}">
+    <input type="hidden" name="origen" value="{{= it.informacion.origen }}">
+    <input type="hidden" name="destino" value="{{= it.informacion.destino }}">
+    <input type="hidden" name="salida" value="{{= it.informacion.salida }}">
+    <input type="hidden" name="regreso" value="{{= it.informacion.regreso }}">
+    <input type="hidden" name="externo" value="{{= it.informacion.externo }}">
+    <input type="hidden" name="agencia" value="34">
+    <input type="hidden" name="pagina" value="5">
+    {{ for(var pe in it.informacion.edades) { }}
+    <input type="hidden" name="edad[]" value="{{= it.informacion.edades[pe] }}">
+    {{ } }}
+    <input type="hidden" name="metodopago" id="tarjeta" value="1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="info-compra mb-4">
+                    <div class="text-center">
+                        {{? it.plan.detalle.logo}}
+                            <img src="https://gestor.bookingassistance.co/{{= it.plan.detalle.logo }}" >
+                        {{ } }}
+                    </div>
+                    <h2>{{=it.plan.detalle.nombre}}</h2>
+                    <a class="view-detalle-plan"  data-toggle="modal" data-target="#modalpage" data-id="{{=it.plan.detalle.id }}" >Ver Coberturas</a>
+                    <div class="espaciado-content"> Origen: {{= it.informacion.origennombre}}</div>
+                    <div class="espaciado-content"> Destino: {{= it.informacion.destinonombre}}</div>
+                    <div class="espaciado-content"> Total Pasajeros: {{= it.informacion.personas}}</div>
+                    <div class="espaciado-content">Fecha de Inicio: {{= it.informacion.salida}}</div>
+                    <div class="espaciado-content">Fecha de regreso: {{= it.informacion.regreso}} </div>
+                    {{? it.plan.valor.promocionetiqueta}}
+                        <div class="promo-table-res">{{=it.plan.valor.promocionetiqueta}}</div>
+                        <div class="total-table-antes"><span>{{=it.plan.valor.valorformat}}</span> {{=it.plan.valor.valorpagarantesformat}} </div>
+                        {{ } }}
+                    <div class="valor">{{=it.plan.valor.valorformat}} ${{=it.plan.valor.valorpagarformat}}</div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="caja-compra">
+                    {{ for(var pedad in it.informacion.edades) { }}
+                    <div class="viajero   {{? pedad == 0 }} principal  {{?}} ">
+                        {{? pedad == 0 }}
+                            <h3>Viajero Principal ({{= it.informacion.edades[pedad] }} Años)</h3>
+                        {{??}}
+                            <h3>Otro Viajero ({{= it.informacion.edades[pedad] }} Años)</h3>
+                        {{?}}
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="" class="requerido">Nombres</label>
+                                    <input type="text" name="pasajero{{= pedad }}" class="form-control sololetras" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="">Apellidos</label>
+                                    <input type="text" name="1apellido{{= pedad }}" class="form-control sololetras" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-4" style="display:none">
+                                <div class="form-group">
+                                    <label for="">Segundo Apellido</label>
+                                    <input type="text" name="2apellido{{= pedad }}" class="form-control sololetras">
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label for="">Documento</label>
+                                    <div class="input-group">
+                                        <select name="tipoid" id="" class="form-control">
+                                            <option value="PA">Pasaporte</option>
+                                            <option value="CC">Cedula de Ciudadania</option>
+                                            <option value="CE">Cedula de Extranjeria</option>
+                                            <option value="DNI">Documento Nacional de Identidad</option>
+                                        </select>
+                                        <div class="input-group-addon">
+                                        </div>
+                                        <input type="text" class="form-control pasaporte" name="pasaporte{{= pedad }}"  required>
+                                    </div>               
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="">Fecha de Nacimiento </label>
+                                    <div class="input-group mb-3 date">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-calendar"></i></span>
+                                        <input type="text" data-p="{{= pedad }}" name="nacimiento{{= pedad }}"  id="nacimiento{{= pedad }}" class="form-control pull-right edades-input " data-edad="{{= it.informacion.edades[pedad] }}" readonly required>
+                                    </div>
+                                    <div class="error" id="error-fecha-{{= pedad }}" style="display:none"></div>
+                                </div>
+                            </div>
+                        </div>
+                        {{? pedad == 0 }}   
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="">Teléfono</label>
+                                    <input type="text" name="telefono{{= pedad }}"  class="form-control solonumeros" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label for="">Email </label>
+                                    <input type="email" name="correo{{= pedad }}"  class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="">Dirección</label>
+                                    <input type="text" name="direccion{{= pedad }}"  class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="">Ciudad</label>
+                                    <input type="text" name="ciudad{{= pedad }}"  class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="">País</label>
+                                    <input type="text" name="ciudad{{= pedad }}"  class="form-control"  required>
+                                </div>
+                            </div>
+                        </div>
+                        {{?}}
+                    </div>
+                {{  } }}
+                <div id="caja-emergencia">
+                    <h3>Contacto de Emergencia</h3>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Nombre</label>
+                                <input type="text" name="nombreemergencia" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-4 d-none">
+                            <div class="form-group">
+                                <label for="">Email </label>
+                                <input type="text" name="correoemergencia" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="">Teléfono</label>
+                                <input type="text" name="telefonoemergencia" class="form-control">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pagos">
+                {{? it.plan.valor.monedacompra == 'COP' }}
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h3> Medio  de pago</h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="hidden" name="metodopago" id="metodopago" value="1">
+                     
+                    
+                        <label for="tarjetas" class="caja-mediopago">
+                            <input type="radio" name="mediopago" id="tarjetas" value="2" required>
+                            <span>
+                                Usa tus Tarjetas
+                                <img src="https://agencias.bookingassistance.co/assets/admin/imagenes/pago4.png" alt="">
+                            </span>
+                        </label>
+                        <label for="transfiere" class="caja-mediopago">
+                            <input type="radio" name="mediopago" id="transfiere" value="3">
+                            <span>
+                                Transfiere con tu cuenta Bancolombia
+                                <img src="https://agencias.bookingassistance.co/assets/admin/imagenes/pago2.png" alt="">
+                            </span>
+                        </label>
+                        <label for="efectivo" class="caja-mediopago">
+                            <input type="radio" name="mediopago" id="efectivo" value="4">
+                            <span>
+                                Paga en efectivo en un Corresponsal Bancario
+                                <img src="https://agencias.bookingassistance.co/assets/admin/imagenes/pago1.png" alt="">
+                            </span>
+                        </label>
+                        <label for="nequi" class="caja-mediopago">
+                            <input type="radio" name="mediopago" id="nequi" value="5">
+                            <span>
+                                Nequi
+                                <img src="https://agencias.bookingassistance.co/assets/admin/imagenes/pago3.png" alt="">
+                            </span>
+                        </label>
+                        <label for="pse" class="caja-mediopago">
+                            <input type="radio" name="mediopago" id="pse" value="6" >
+                            <span>
+                                PSE
+                                <img src="https://agencias.bookingassistance.co/assets/admin/imagenes/pago5.png" alt="">
+                            </span>
+                        </label>
+                    </div>
+                    <input type="hidden" class="form-control" name="email-facturacion" id="email-facturacion" >
+                    <div class="col-sm-6">
+                        <div class="info-medio" style="display: none;" id="mediopago1">
+                            <h4>Paga con credito agencia</h4>
+                            <div>El Valor se descontara de tu cupo  y deberas pagarlo mas adelante.</div>
+                        </div>
+                        <div class="info-medio" style="display: none;" id="mediopago2">
+                            <h4>Paga con tu tarjeta</h4>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="">EMAIL DE FACTURACIÓN</label>
+                                        <input type="text" class="form-control email-facturacion" >
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="">NÚMERO DE LA TARJETA</label>
+                                        <input type="text" class="form-control" name="no-tarjeta" id="no-tarjeta">
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="">EXPIRA EL</label>
+                                     <div class="row">
+                                        <div class="col-xs-5">
+                                            <select class="form-control" id="expirationMonth" name="expirationMonth">
+                                                <option value="" disabled="">Mes</option>
+                                                <option value="01">01</option>
+                                                <option value="02">02</option>
+                                                <option value="03">03</option>
+                                                <option value="04">04</option>
+                                                <option value="05">05</option>
+                                                <option value="06">06</option>
+                                                <option value="07">07</option>
+                                                <option value="08">08</option>
+                                                <option value="09">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-2"> / </div>
+                                        <div class="col-xs-5">
+                                            <select name="expirationYear" id="expirationYear" class="form-control">
+                                                <option value="">Año</option>
+                                                {{ for(var value in it.informacionpago.vencimientos) { }}
+                                                    <option value="{{=value }}">{{=value }}</option>
+                                                {{ } }}
+                                                
+                                                
+                                            </select>
+                                        </div>
+                                     </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="">CVC (CÓDIGO DE SEGURIDAD)</label>
+                                    <input type="text" class="form-control" id="cvc" name="cvc">
+                                </div>
+                                <div class="col-sm-12">
+                                    <label for="">NOMBRE EN LA TARJETA</label>
+                                    <input type="text" class="form-control" name="cardName">
+                                </div>
+                                <div class="col-sm-12">
+                                    <label for="">IDENTIFICACIÓN DEL TARJETAHABIENTE</label>
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <select name="type"  class="form-control" name="cardDocumentType">
+                                                <option value="" disabled="">Tipo</option>
+                                                <option value="CC">CC - Cédula de Ciudadanía</option>
+                                                <option value="CE">CE - Cédula de Extranjería</option>
+                                                <option value="NIT">NIT - Número de Identificación Tributaria</option>
+                                                <option value="PP">PP - Pasaporte</option>
+                                                <option value="TI">TI - Tarjeta de Identidad</option>
+                                                <option value="DNI">DNI - Documento Nacional de Identidad</option>
+                                                <option value="RG">RG - Carteira de Identidade / Registro Geral</option>
+                                                <option value="OTHER">Otro</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            <input type="text" class="form-control" placeholder="Número de documento" name="cardDocument">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <label for="">PAGAR EN</label>
+                                    <div class="row">
+                                        <div class="col-xs-3">
+                                            <select class="form-control" name="cuotas">
+                                                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option><option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option><option value="32">32</option><option value="33">33</option><option value="34">34</option><option value="35">35</option><option value="36">36</option></select>
+                                        </div>
+                                        <div class="col-xs-9">
+                                            Cuotas
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <br>
+                                    <div>
+                                        <input type="checkbox" name="condiciones" >
+                                        Acepto haber leído los <a target="_blank" href="{{= it.informacionpago.autenticar.permalink }}" >Términos y Condiciones y la Política de Privacidad</a> para hacer este pago.
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+                        <div class="info-medio" style="display: none;" id="mediopago3">
+                            <h4>Paga con Bancolombia</h4>
+                            <div class="text-center">
+                                <img src="https://agencias.bookingassistance.co/assets/admin/imagenes/pago2.png" alt=""> <br>
+                                Usa tu <strong>de ahorros o corriente</strong>, recuerda que debes tener activo el servicio de <strong>clave dinámica</strong> de la App Bancolombia
+                            </div>
+                            <div>
+                                <div class="form-group">
+                                    <label for="">EMAIL DE FACTURACIÓN</label>
+                                    <input type="text" class="form-control email-facturacion"  >
+                                </div>
+                            </div>
+                            <div>
+                                <label for="">TIPO DE PERSONA</label>
+                                <select id="userType" name="userType" class="form-control">
+                                    <option value="PERSON">Persona natural</option>
+                                    <option value="BUSINESS" disabled="">Persona jurídica (no disponible aún)</option>
+                                </select>
+                            </div>
+                            <br>
+                            <div>
+                                <input type="checkbox" name="" id="">
+                                Acepto haber leído los <a target="_blank" href="{{= it.informacionpago.autenticar.permalink }}" >Términos y Condiciones y la Política de Privacidad</a> para hacer este pago.
+                            </div>
+                            
+                        </div>
+                        <div class="info-medio" style="display: none;" id="mediopago4">
+                            <h4>Paga en efectivo</h4>
+                            <div class="text-center">
+                                <img src="https://agencias.bookingassistance.co/assets/admin/imagenes/pago1.png" alt="">
+                                <div >Acércate a un <strong>Corresponsal Bancario Bancolombia</strong> en las <strong>próximas 72 horas</strong> y realiza tu pago con las instrucciones que se te brindarán en el siguiente paso.</div>
+                            </div>
+                            <br>
+                            <div>
+                                <div class="form-group">
+                                    <label for="">EMAIL DE FACTURACIÓN</label>
+                                    <input type="text" class="form-control email-facturacion" >
+                                </div>
+                            </div>
+                            <div>
+                                <input type="checkbox" name="" id="">
+                                Acepto haber leído los <a target="_blank" href="{{= it.informacionpago.autenticar.permalink }}" >Términos y Condiciones y la Política de Privacidad</a> para hacer este pago.
+                            </div>
+                        </div>
+                        <div class="info-medio" style="display: none;" id="mediopago5">
+                            <h4>Paga con Nequi</h4>
+                            <div>
+                                <div class="form-group">
+                                    <label for="">EMAIL DE FACTURACIÓN</label>
+                                    <input type="text" class="form-control email-facturacion" >
+                                </div>
+                            </div>
+                            <div>
+                                <label for="">NÚMERO CELULAR DE TU CUENTA NEQUI</label>
+                                <input type="text" class="form-control numeros telefono" name="numeronequi" id="numeronequi">
+                                <div>Recibiras una notificación push en tu celular.</div>
+                            </div>
+                            <br>
+                            <div>
+                                <input type="checkbox" name="" id="">
+                                Acepto haber leído los <a target="_blank" href="{{= it.informacionpago.autenticar.permalink }}" >Términos y Condiciones y la Política de Privacidad</a> para hacer este pago.
+                            </div>
+                        </div>   
+                        <div class="info-medio" style="display: none;" id="mediopago6">
+                            <h4>Paga con PSE</h4>
+                            <div >
+                                <div class="form-group">
+                                    <label for="">EMAIL DE FACTURACIÓN</label>
+                                    <input type="text" class="form-control email-facturacion"  >
+                                </div>
+                            </div>
+                            <div>
+                                <label for="">SELECCIONA TU BANCO</label>
+                                <select name="bancopse" id="bancopse" class="form-control">
+                                    {{ for(var p in it.informacionpago.instituciones) { }}
+                                        <option value="{{=it.informacionpago.instituciones[p].financial_institution_code }}">{{=it.informacionpago.instituciones[p].financial_institution_name }}</option>
+                                    {{ } }}
+                                </select>
+                            </div>
+                            <div>
+                                <label for="">TIPO DE DOCUMENTO</label>
+                                <select name="tipodocumentopse" id="tipodocumentopse" class="form-control">
+                                    <option value="" disabled="">- Escoge un tipo de documento -</option>
+                                    <option value="CC">CC - Cédula de ciudadanía</option>
+                                    <option value="CE">CE - Cédula de extranjería</option>
+                                    <option value="NIT">NIT - Número de idenificación tributaria</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="">NÚMERO DE DOCUMENTO</label>
+                                <input type="text" name="nodocumentopse" id="nodocumentopse" class="form-control">
+                            </div>
+                            <br>
+                            <div>
+                                <input type="checkbox" name="" id="">
+                                Acepto haber leído los <a target="_blank" href="{{= it.informacionpago.autenticar.permalink }}" >Términos y Condiciones y la Política de Privacidad</a> para hacer este pago.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{?}}
+               
+    
+                    <div>
+                        <div><input type="checkbox" value="1" name="informacion"> Me gustaría estar informado de las últimas novedades. </div>
+                        <div><input type="checkbox" value="1" id="condiciones" required> He leído y acepto la política de privacidad (información básica aquí) y las condiciones generales del seguro. </div>
+                    </div>
+    
+                    <div class="text-center">
+                        <br><br><br>
+                        {{? it.plan.valor.promocionetiqueta}}
+                            <div class="total-table-antes"><span>{{=it.plan.valor.valorformat}}</span> {{=it.plan.valor.valorpagarantesformat}} </div>
+                        {{ } }}
+                        <div class="total-table">{{=it.plan.valor.valorformat}} {{=it.plan.valor.valorpagarformat}} </div>
+                        <div class="value-simple-table">$ {{=it.plan.valor.valor}} USD</div>
+                        <input type="submit" class="btn btn-success btn-rosa " value="Pagar">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script>
+    $('#datepicker').datepicker({
+      autoclose: true,
+      format: 'dd/mm/yyyy',
+    });
+    
+    $(".edades-input").each(function(){
+        var options = { year: 'numeric', month: 'long', day: 'numeric' };
+        var edad = $(this).data("edad");
+        var fechamaxima = new Date();
+        console.log(fechamaxima);
+        fechamaxima.setMonth(fechamaxima.getMonth() - (12 * parseInt(edad)));
+        var fechaminima = new Date();
+        fechaminima.setMonth(fechaminima.getMonth() - (12 * (parseInt(edad) + 1)));
+        $(this).attr("data-date-end-date",fechamaxima.toLocaleDateString("en-NZ"));
+        $(this).attr("data-date-start-date",fechaminima.toLocaleDateString("en-NZ"));
+        $(this).val(fechaminima.toLocaleDateString("en-NZ"));
+    });
+    $('.edades-input').datepicker({
+      autoclose: true,
+      language: "es",
+      enableOnReadonly:"false"
+    });
+    $("#correo-principal").on("keyup",function(){
+        var valor = $(this).val();
+        $("#correo-contacto").html(valor);
+    });
+
+    $("#emergencia").on("change",function(){
+        if($("#emergencia").is(":checked")){
+            $("#caja-emergencia").show();
+        } else {
+            $("#caja-emergencia").hide();
+        }
+    });
+
+    $("input[name=mediopago]").on("change", function(){
+        var value = $(this).val();
+        if(parseInt(value) == 1){
+            $("#metodopago").val(2);
+        } else {
+            $("#metodopago").val(1);
+        }
+        $(".info-medio").hide();
+        $('.info-medio input').removeAttr("required");
+        $('.info-medio select').removeAttr("required");
+        $("#mediopago"+value).show();
+        $("#mediopago"+value+' input').prop("required", true);
+        $("#mediopago"+value+' select').prop("required", true);
+        var value = $("#mediopago"+value+' input.email-facturacion').val();
+        $("#email-facturacion").val(value);
+        console.log("cambio"+value);
+    });
+
+    $("body").on("change",".email-facturacion",function(){
+        var value = $(this).val();
+        $("#email-facturacion").val(value);
+    });
+
+    function creditCardType(cc) {
+        let amex = new RegExp('^3[47][0-9]{13}$');
+        let visa = new RegExp('^4[0-9]{12}(?:[0-9]{3})?$');
+        let cup1 = new RegExp('^62[0-9]{14}[0-9]*$');
+        let cup2 = new RegExp('^81[0-9]{14}[0-9]*$');
+
+        let mastercard = new RegExp('^5[1-5][0-9]{14}$');
+        let mastercard2 = new RegExp('^2[2-7][0-9]{14}$');
+
+        let disco1 = new RegExp('^6011[0-9]{12}[0-9]*$');
+        let disco2 = new RegExp('^62[24568][0-9]{13}[0-9]*$');
+        let disco3 = new RegExp('^6[45][0-9]{14}[0-9]*$');
+        
+        let diners = new RegExp('^3[0689][0-9]{12}[0-9]*$');
+        let jcb =  new RegExp('^35[0-9]{14}[0-9]*$');
+
+
+        if (visa.test(cc)) {
+            return 'VISA';
+        }
+        if (amex.test(cc)) {
+            return 'AMEX';
+        }
+        if (mastercard.test(cc) || mastercard2.test(cc)) {
+            return 'MASTERCARD';
+        }
+        if (disco1.test(cc) || disco2.test(cc) || disco3.test(cc)) {
+            return 'DISCOVER';
+        }
+        if (diners.test(cc)) {
+            return 'DINERS';
+        }
+        if (jcb.test(cc)) {
+            return 'JCB';
+        }
+        if (cup1.test(cc) || cup2.test(cc)) {
+            return 'CHINA_UNION_PAY';
+        }
+        return undefined;
+        }
+
+    $("body").on("change","#no-tarjeta",function(){
+        var value = $(this).val();
+        var tipo = creditCardType(value);
+        console.log(tipo);
+    });
+
+    $('.numeros').keypress(function(tecla) {
+        if(tecla.charCode < 48 || tecla.charCode > 57) return false;
+    });
+
+    $('.telefono').keypress(function() {
+            if (this.value.length > 10) 
+            this.value = this.value.slice(0,10); 
+    });
+
+    $('#cvc').keypress(function() {
+            if (this.value.length > 3) 
+            this.value = this.value.slice(0,3); 
+    });
+</script>

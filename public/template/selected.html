@@ -1,0 +1,4 @@
+<option>{{=it.intro}}</option>
+{{ for(var prop in it.razas) { }}
+    <option value="{{=it.razas[prop].id}}" {{? it.razas[prop].id  == it.actual }} selected {{ } }}>{{=it.razas[prop].nombre}}</option>
+{{ } }}

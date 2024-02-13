@@ -1,0 +1,34 @@
+@extends("theme.admin.admin")
+@section('content')
+    <h1>{{ ucfirst($modelName) }}s</h1>
+
+    {{-- Lista de {{ $modelName }}s --}}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                {{-- Agrega más columnas según tus necesidades --}}
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{-- @foreach($modelInstances as $modelInstance) --}}
+            {{-- <tr>
+                <td>{{ $modelInstance->id }}</td>
+                <td>{{ $modelInstance->name }}</td>
+                {{-- Agrega más columnas según tus necesidades --}}
+                <td>
+                    {{-- Enlaces para editar y eliminar --}}
+                    <a href="{{ route('admin.'.$modelName.'.edit', $modelInstance->id) }}" class="btn btn-primary">Editar</a>
+                    <form action="{{ route('admin.'.$modelName.'.destroy', $modelInstance->id) }}" method="post" style="display:inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Eliminar</button>
+                    </form>
+                </td>
+            </tr> --}}
+            {{-- @endforeach --}}
+        </tbody>
+    </table>
+@endsection

@@ -1,0 +1,11 @@
+@extends("theme.admin.admin")
+@section('content')
+    <h1>Crear {{ ucfirst($modelName) }}</h1>
+
+    {{-- Formulario de creación --}}
+    <form action="{{ route('admin.'.$modelName.'.store') }}" method="post">
+        @csrf
+        {{-- @include('admin.'.$modelName.'.form', ['action' => 'store']) --}}
+        <button type="submit" class="btn btn-success">Guardar</button>
+    </form>
+@endsection

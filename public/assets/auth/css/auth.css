@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700;900&display=swap');
+/*
+    font-family: 'Montserrat', sans-serif;
+*/
+
+:root {
+    --font-color: #000;
+  }
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    background: #FFF;
+    background:url("../images/background.png") center center  no-repeat fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.main-body{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+}
+
+.bg-login{
+    /*background:url("../images/background.png") center center;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    display: flex;
+    position:relative;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.bg-login h1{
+    text-shadow: 0 0 2px #666;
+    color: #fff;
+    display: block;
+    text-align: center;
+    font-weight: 900;
+}
+
+.box-login{
+    display: inline-block;
+    width: 400px;
+    max-width: 100%;
+    -webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,0.4);
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.4);
+    border-radius: 0.5em;
+    overflow: hidden;
+    background: #FFF;
+}
+
+.box-login .header{
+    background:url("../images/background.png") center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    padding: 10px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.box-login .header h2{
+    text-shadow: 0 0 5px #fff;
+    color: #000;
+    display: block;
+    text-align: center;
+    font-weight: 900;
+}
+
+.box-login .body{
+    padding: 20px;
+    text-align: left;
+}
+
+.box-login .form-control {
+    border-color: #6c757d;
+}
+
+.box-login .form-control:focus {
+    border-color: #6c757d;
+}
+
+.box-login .btn-success{
+    background: #2e909e;
+    border-color: #2e909e;
+}

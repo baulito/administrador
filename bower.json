@@ -1,0 +1,29 @@
+{
+  "name": "framework",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "Carlos Rodriguez <alos1212@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "public",
+  "directory": "public/components",
+  "dependencies": {
+    "Font-Awesome": "^6.4.2",
+    "bootstrap": "^5.3.2",
+    "jquery": "^3.7.1",
+    "tinymce": "^6.7.3",
+    "duDatepicker": "https://github.com/dmuy/duDatepicker",
+    "selectize": "^0.15.2",
+    "slick-carousel": "^1.8.1",
+    "bootstrap-datepicker": "^1.10.0",
+    "dropzone": "dropzone/dropzone-bower#^5.9.3"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

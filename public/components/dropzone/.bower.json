@@ -1,0 +1,26 @@
+{
+  "name": "dropzone",
+  "location": "dropzone/dropzone-bower",
+  "description": "Dropzone is an easy to use drag'n'drop library. It supports image previews and shows nice progress bars.",
+  "homepage": "http://www.dropzonejs.com",
+  "main": [
+    "dist/min/dropzone.min.css",
+    "dist/min/dropzone.min.js"
+  ],
+  "ignore": [
+    "*",
+    "!dist",
+    "!dist/**/*"
+  ],
+  "version": "5.9.3",
+  "_release": "5.9.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "v5.9.3",
+    "commit": "f4fe388f142db6148ae2a63f5106fb265f7e45ad"
+  },
+  "_source": "https://github.com/dropzone/dropzone-bower.git",
+  "_target": "^5.9.3",
+  "_originalSource": "dropzone/dropzone-bower",
+  "_direct": true
+}

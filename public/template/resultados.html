@@ -1,0 +1,77 @@
+<div class="categorias-seguros d-none">
+    {{ for(var prop in it.categorias) { }}
+        <a data-id="{{=it.categorias[prop].id}}">{{=it.categorias[prop].nombre}}</a>
+    {{ } }}
+    <a data-id="0" class="active">Todas</a>
+</div>
+<div class="row">
+{{ for(var prop in it.planes) { }}
+<div class="col-md-12 caja-plan-categoria categoria-{{=it.planes[prop].detalle.categoria}} empresa-{{=it.planes[prop].detalle.idempresa}}">
+    <div class="caja-plan">
+        <div class="row align-items-center">
+            <div class="col-12">
+                <h3>{{=it.planes[prop].detalle.nombre}}</h3>
+            </div>
+            <div class="col-md-3">
+                <div class="image">
+                    <img src="https://gestor.bookingassistance.co/{{=it.planes[prop].detalle.logo}}" alt="">
+                </div>
+            </div>
+            <div class="col-md-6">
+               
+                <div class="informacion"> 
+                    <ul>
+                        <li class="">
+                            {{=it.planes[prop].comparacion[0].nombre}}
+                            <span>{{=it.planes[prop].comparacion[0].valor}}</span>
+                        </li>
+                        <li class="">
+                            {{=it.planes[prop].comparacion[1].nombre}}
+                            <span>{{=it.planes[prop].comparacion[1].valor}}</span>
+                        </li>
+                        <li class="">
+                            {{=it.planes[prop].comparacion[2].nombre}}
+                            <span>{{=it.planes[prop].comparacion[2].valor}}</span>
+                        </li>
+                        <li class="">
+                            {{=it.planes[prop].comparacion[3].nombre}}
+                            <span>{{=it.planes[prop].comparacion[3].valor}}</span>
+                        </li>
+                    </ul>
+                    <div >
+                        <a  data-toggle="modal" data-target="#modalpage" data-id="{{=it.planes[prop].detalle.id }}" class="detalle view-detalle-plan">Mas información</a>
+                    </div>
+                
+                </div>
+            </div>
+            <div class="col-md-3 text-center">
+                    
+                    <div class="datos">
+                        <div class="caja-costos-plan">
+                            {{? it.planes[prop].valor.promocionetiqueta}}
+                                <div class="promo-table-res">{{=it.planes[prop].valor.promocionetiqueta}}</div>
+                                <div class="total-table-antes"><span>{{=it.planes[prop].valor.valorformat}}</span> {{=it.planes[prop].valor.valorpagarantesformat}}</div>
+                            {{ } }}
+                            <div class="total-table"><span>{{=it.planes[prop].valor.valorformat}} </span>${{=it.planes[prop].valor.valorpagarformat}} </div>
+                            <div class="value-simple-table">USD ${{=it.planes[prop].valor.valor}}</div>
+                        </div>
+                        <form class="form-compra" action="/segurosdeviaje/checkout" method="post" >
+                            <input type="hidden" name="plan" value="{{= it.planes[prop].detalle.id }}">
+                            <input type="hidden" name="origen" value="{{= it.informacion.origen }}">
+                            <input type="hidden" name="destino" value="{{= it.informacion.destino }}">
+                            <input type="hidden" name="salida" value="{{= it.informacion.salida }}">
+                            <input type="hidden" name="regreso" value="{{= it.informacion.regreso }}">
+                            {{ for(var pe in it.informacion.edades) { }}
+                            <input type="hidden" name="edad[]" value="{{= it.informacion.edades[pe] }}">
+                            {{ } }}
+                            <input type="hidden" name="externo" value="1">
+                            <input type="hidden" name="agencia" value="0">
+                            <button class="btn  btn-xs btn-success comprar" type="submit">Comprar</button>
+                        </form>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{ } }}
+</div>

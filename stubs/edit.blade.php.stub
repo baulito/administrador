@@ -1,0 +1,12 @@
+@extends("theme.admin.admin")
+@section('content')
+    <h1>Editar {{ ucfirst($modelName) }}</h1>
+
+    {{-- Formulario de edición --}}
+    <form action="{{ route('admin.'.$modelName.'.update', $modelInstance->id) }}" method="post">
+        @csrf
+        @method('PUT')
+        {{-- @include('admin.'.$modelName.'.form', ['action' => 'update']) --}}
+        <button type="submit" class="btn btn-primary">Actualizar</button>
+    </form>
+@endsection

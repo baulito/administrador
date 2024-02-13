@@ -1,0 +1,43 @@
+
+<div class="search-home little">
+    <h2>
+        {{? it.compra.estadopago == 1}}
+            Tu pàgo fue Aprobado
+        {{?? it.compra.estadopago == 3 || it.compra.estadopago == 0 }}
+            Tu pàgo se encuentra Pendiente
+        {{??}}
+            Tu pàgo fue Fallido o Rechazado
+        {{?}}
+        <br>
+        Ya puedes estar tranquilo, tu viaje se encuentra protegido
+    </h2>
+</div>
+<div class="padding-content detale-compra">
+    <div class="container">
+        <h3 class="referencia">Referencia de Compra <span>{{= it.compra.id}}</span></h3>
+        <div class="decripcion-grande">Estamos trabajando en la emision de tu asistencia en viaje, en un maximo de 12 horas recibiras en el email registrado el certificado junto a las condiciones generales..</div>
+        <div class="mt-5">
+            <h2 class="main-title text-center">El detalle de tu cobertura es la siguiente</h2>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="box-detalle text-center">
+                        <h3> {{=it.plan.nombre}}</h3>
+                        <div class="mb-3"><img src="https://gestor.bookingassistance.co/{{=it.plan.logo}}" alt=""></div>
+                        <div><strong>Origen:</strong> {{= it.compra.nombreorigen}}</div>
+                        <div><strong>Destino:</strong> {{= it.compra.nombredestino}}</div>
+                        <div><strong>Fecha de Inicio:</strong> {{= it.compra.salida}}</div>
+                        <div><strong>Fecha de regreso:</strong> {{= it.compra.regreso}}</div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="box-detalle">
+                        <h4>Viajeros</h4>
+                        {{ for(var posp in it.pasajeros) { }}
+                            <div >{{=it.pasajeros[posp].nombre}} {{=it.pasajeros[posp].apellido1}}</div>
+                        {{ } }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

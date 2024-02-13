@@ -1,0 +1,17 @@
+<div class="text-center detalle-plan">
+    <div class="row align-items-center">
+        <div class="col-sm-8"><h2>{{=it.detalle.nombre}}</h2></div>
+        <div class="col-sm-4 text-end">
+            <img src="https://gestor.bookingassistance.co/{{=it.detalle.logo}}" height="100" alt="">
+        </div>
+       
+    </div>
+    <table class="table">
+        {{ for(var p in it.informacion) { }}
+            <tr>
+                <td class="text-start">{{= it.informacion[p].nombre }}</td>
+                <td class="text-end">{{= it.informacion[p].valor }}</td>
+            </tr>
+        {{ } }}
+    </table>
+</div>

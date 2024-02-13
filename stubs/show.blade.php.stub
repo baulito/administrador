@@ -1,0 +1,7 @@
+@extends("theme.admin.admin")
+@section('content')
+    <h1>{{ ucfirst($modelName) }} Detallado</h1>
+
+    {{-- Detalles de {{ $modelName }} --}}
+    {{-- @include('admin.'.$modelName.'.details') --}}
+@endsection

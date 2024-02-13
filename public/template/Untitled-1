@@ -1,0 +1,156 @@
+<div class="box box-primary">
+    <div class="contenido-admin">    
+        <div class="row">
+            <div class="col-sm-9">
+                <h3>Información de la compra</h3>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <label for="">Origen</label>
+                        {{= it.compra.nombreorigen}}
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="destino">Destino</label>
+                        {{= it.compra.nombredestino}}
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="">Salida</label>
+                        {{= it.compra.salida}}
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="">Regreso</label>
+                        {{= it.compra.regreso}}
+                    </div>
+                </div>
+                <h3>Información del Pago</h3>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <label for="">Medio de Pago</label>
+                        
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="">Estado de Pago</label>
+                        
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="">Estado Mision</label>
+                        
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-sm-3 text-center">
+                <h2>{{$plan->nombre}}</h2>
+                <img src="/{{$plan->logo}}" alt="">
+                <div>
+                    <strong>VALOR {{= it.compra.moneda}} </strong> {{= it.compra.valor*it.compra.trm }}
+                </div>
+                <div>
+                    <strong>VALOR USD $</strong> {{= it.compra.valor }}
+                </div>
+                <div>
+                    <strong>TRM:</strong> {{= it.compra.trm }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="box box-primary">
+    <div class="contenido-admin">
+        <h3>Datos Viajeros</h3>
+        {{ for(var posp in it.pasajeros) { }}
+            <div class="caja-pasajero">
+                {{? it.pasajeros[posp].tipo == 1}}
+                    <h3>Viajero Principal</h3>
+                {{??}}
+                    <h3>Otro Viajero</h3>
+                {{?}}
+
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="" class="requerido">Nombre</label>
+                            {{it.pasajeros[posp].nombre}}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="">Primer Apellido</label>
+                            {{it.pasajeros[posp].apellido1}}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="">Segundo Apellido</label>
+                            {{it.pasajeros[posp].apellido2}}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="">Fecha de Nacimiento </label>
+                           {{it.pasajeros[posp].nacimiento}}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="">Pasaporte</label>
+                            {{it.pasajeros[posp].pasaporte}}
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label for="">No. Voucher</label>
+                            {{it.pasajeros[posp].voucher}}
+                    </div>
+                </div>
+                {{? it.pasajeros[posp].tipo == 1}}
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="">Email </label>
+                                {{it.pasajeros[posp].email}}
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="">Teléfono</label>
+                                {{it.pasajeros[posp].telefono}}
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="">Dirección</label>
+                               {{it.pasajeros[posp].direccion}}
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="">Ciudad</label>
+                               {{it.pasajeros[posp].ciudad}}
+                            </div>
+                        </div>
+                        <div class="col-sm-3"></div>
+                    </div>
+                {{?}}
+            </div>    
+        {{ } }}
+    </div>
+</div>
+<div class="box box-primary">
+    <div class="contenido-admin">
+        <h3>Contacto de emergencia</h3>
+        <div class="row">
+            <div class="col-sm-4">
+                <label for="">Nombre</label>
+                {{= it.compra.nombreemergencia}}
+            </div>
+            <div class="col-sm-4">
+                <label for="">Correo</label>
+                {{= it.compra.correoemergencia}}
+            </div>
+            <div class="col-sm-4">
+                <label for="">Teléfono</label>
+                {{= it.compra.telefonoemergencia}}
+            </div>
+        </div>
+    </div>
+</div>
