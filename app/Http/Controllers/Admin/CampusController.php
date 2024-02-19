@@ -73,8 +73,8 @@ class CampusController extends Controller
         }
         //var_dump($post);
         $res = Apiservice::request("campus/update/".$id,$post,3);
-        //var_dump($res);
-         return redirect()->route('campus.index')->with('success', 'Contenido actualizado exitosamente.');
+        var_dump($res);
+        //return redirect()->route('campus.index')->with('success', 'Contenido actualizado exitosamente.');
     }
 
     public function destroy($id)
