@@ -19,7 +19,6 @@ class ProductController extends Controller
             $filtro['search'] = $data['busqueda'];
         }
         if(isset($data['category'])){
-            
             $filtro['category'] = $data['category'];
         }
         $contents =  Apiservice::request("product",$filtro,0);
