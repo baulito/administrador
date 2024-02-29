@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-sm-3">
                     {!! Form::label('category', 'Categoria:',['class' => 'form-label']) !!}
-                    {!! Form::select('category', $categories, null, ['class' => 'form-control', 'required'=>true]) !!}
+                    {!! Form::select('category', $categories, null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="col-sm-3"></div>
                 <div class="col-sm-3">
