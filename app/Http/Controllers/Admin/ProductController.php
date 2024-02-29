@@ -16,7 +16,7 @@ class ProductController extends Controller
         $data = $request->all();
         $filtro = [];
         if(isset($data['busqueda'])){
-            $filtro['busqueda'] = $data['busqueda'];
+            $filtro['search'] = $data['busqueda'];
         }
         if(isset($data['category'])){
             $filtro['category'] = $data['category'];
