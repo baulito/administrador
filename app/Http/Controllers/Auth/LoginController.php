@@ -49,7 +49,7 @@ class LoginController extends Controller
             } else if(isset($data['message'])){
                 $error = $data['message'];
             }
-           return redirect('/login')->with("mensaje",$error);
+           //return redirect('/login')->with("mensaje",$error);
         }
         
     }

@@ -11,8 +11,16 @@ use App\Services\Apiservice;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        $data = $request->all();
+        $filtro = [];
+        if(isset($data['busqueda'])){
+            $filtro['busqueda'] = $data['busqueda'];
+        }
+        if(isset($data['category'])){
+            $filtro['category'] = $data['category'];
+        }
         $contents =  Apiservice::request("product",[],0);
         $categories = $this->getCategories();
         $status = $this->getStatus();
@@ -93,7 +101,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         Apiservice::request("product/delete/".$id,[],2);
-        return redirect()->route('contents.index')->with('success', 'Contenido eliminado exitosamente.');
+        return redirect()->route('product.index')->with('success', 'Contenido eliminado exitosamente.');
     }
 
     public function updateOrder(Request $request)

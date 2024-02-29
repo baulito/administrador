@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('components/bootstrap/dist/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{ asset('components/Font-Awesome/css/all.min.css')}}">
     <link rel="stylesheet" href="{{ asset('components/dropzone/dist/min/dropzone.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/bootstrap-tagsinput/dist/bootstrap-tagsinput.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/admin/css/admin.css')}}">
 </head>
 <body>
@@ -35,7 +36,9 @@
     </div>
     <script src="{{ asset('components/jquery/dist/jquery.min.js')}}"></script>
     <script src="{{ asset('components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
     <script src="{{ asset('components/dropzone/dist/min/dropzone.min.js')}}"></script>
+    <script src="{{ asset('assets/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js') }}"></script>
     <script src="{{ asset('assets/admin/js/admin.js')}}"></script>
     @yield('scripts')
 </body>

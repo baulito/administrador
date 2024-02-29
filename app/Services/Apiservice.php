@@ -61,11 +61,15 @@ class Apiservice
             }
             return $array; 
         } catch (\Exception $e) { 
-           
             if(method_exists($e, 'getResponse')){
                 $response = $e->getResponse();
-                $responseBodyAsString = $response->getBody()->getContents();
-                return json_decode($responseBodyAsString,true);  
+                if(method_exists($e, 'getBody')){
+                    $responseBodyAsString = $response->getBody()->getContents();
+                    return json_decode($responseBodyAsString,true);  
+                } else {
+                    echo "Error: " . $e->getMessage(); 
+                }
+              
             }  else {
                 echo "Error: " . $e->getMessage(); 
             } 

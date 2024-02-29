@@ -1,5 +1,6 @@
 @extends("theme.admin.admin")
 @section('content')
+
     <div class="row  align-items-center">
         <div class="col-sm-10">
             <nav aria-label="breadcrumb" >
@@ -14,6 +15,25 @@
         </div>
     </div>
     <h1>Lista de productos</h1>
+    <form action="/product" >
+        <div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <label for="" class="form-label">Busqueda</label>
+                    <input type="text" name="busqueda" class="form-control">
+                </div>
+                <div class="col-sm-3">
+                    {!! Form::label('category', 'Categoria:',['class' => 'form-label']) !!}
+                    {!! Form::select('category', $categories, null, ['class' => 'form-control', 'required'=>true]) !!}
+                </div>
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                    <button class="btn  btn-success">Filtrar</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <br>
     <div class="row">
         @foreach($contents as $content)
                 <div class="col-sm-4 col-md-3 col-lg-2">

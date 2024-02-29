@@ -55,7 +55,7 @@
             $nameimageurl = 'image_url_'.$i;
             $nameimage = 'image_'.$i;
         ?>
-        <div class="col-sm-2">
+        <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
             <div class="form-group">
                 <div class="input-image"  data-image="{{ isset($content) && $content->$nameimage ? $content->$nameimageurl  : '' }}" >
                     <label >
@@ -71,8 +71,8 @@
     @endfor
     <div class="col-sm-12">
         <div class="form-group">
-            {!! Form::label('tags', 'Tags:',['class' => 'form-label']) !!}
-            {!! Form::text('tags', null, ['class' => 'form-control']) !!}
+            {!! Form::label('tags', 'Tags:',['class' => 'form-label ']) !!}
+            {!! Form::text('tags', null, ['class' => 'form-control tags']) !!}
             @error('tags')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -93,7 +93,7 @@
     <div class="col-sm-3">
         <div class="form-group">
             {!! Form::label('wheight', 'Peso:',['class' => 'form-label']) !!}
-            {!! Form::text('wheight', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            {!! Form::text('wheight', null, ['class' => 'form-control inputNumerico', 'required' => 'required']) !!}
             @error('wheight')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -103,7 +103,7 @@
     <div class="col-sm-3">
         <div class="form-group">
             {!! Form::label('height', 'Alto:',['class' => 'form-label']) !!}
-            {!! Form::text('height', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            {!! Form::text('height', null, ['class' => 'form-control inputNumerico', 'required' => 'required']) !!}
             @error('height')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -112,7 +112,7 @@
     <div class="col-sm-3">
         <div class="form-group">
             {!! Form::label('long', 'Largo:',['class' => 'form-label']) !!}
-            {!! Form::text('long', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            {!! Form::text('long', null, ['class' => 'form-control inputNumerico', 'required' => 'required']) !!}
             @error('long')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -121,7 +121,7 @@
     <div class="col-sm-3">
         <div class="form-group">
             {!! Form::label('width', 'Ancho:',['class' => 'form-label']) !!}
-            {!! Form::text('width', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            {!! Form::text('width', null, ['class' => 'form-control inputNumerico', 'required' => 'required']) !!}
             @error('width')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -129,8 +129,8 @@
     </div>
     <div class="col-sm-4">
         <div class="form-group">
-            {!! Form::label('amount', 'Inventario:',['class' => 'form-label']) !!}
-            {!! Form::text('amount', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            {!! Form::label('amount', 'Inventario:',['class' => 'form-label ']) !!}
+            {!! Form::text('amount', null, ['class' => 'form-control inputNumerico', 'required' => 'required']) !!}
             @error('amount')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -139,7 +139,7 @@
     <div class="col-sm-4">
         <div class="form-group">
             {!! Form::label('value', 'Valor:',['class' => 'form-label']) !!}
-            {!! Form::text('value', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            {!! Form::text('value', null, ['class' => 'form-control inputNumerico', 'required' => 'required']) !!}
             @error('value')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -147,8 +147,8 @@
     </div>
     <div class="col-sm-4">
         <div class="form-group">
-            {!! Form::label('old_value', 'Valor anterior:',['class' => 'form-label']) !!}
-            {!! Form::text('old_value', null, ['class' => 'form-control']) !!}
+            {!! Form::label('old_value', 'Valor en promoción:',['class' => 'form-label']) !!}
+            {!! Form::text('old_value', null, ['class' => 'form-control inputNumerico']) !!}
             @error('old_value')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
