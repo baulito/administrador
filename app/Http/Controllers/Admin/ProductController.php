@@ -21,7 +21,7 @@ class ProductController extends Controller
         if(isset($data['category'])){
             $filtro['category'] = $data['category'];
         }
-        $contents =  Apiservice::request("product",[],0);
+        $contents =  Apiservice::request("product",$filtro,0);
         $categories = $this->getCategories();
         $status = $this->getStatus();
         $campus = $this->getCampus();
