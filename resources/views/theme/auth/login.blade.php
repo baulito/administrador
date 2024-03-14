@@ -12,7 +12,7 @@
 <body>
     <div class="main-body">
         <div class="row h-100 align-items-center">
-            <div class="col-sm-6  h-100 ">
+            <div class="col-sm-6  h-100 d-none d-md-block ">
                 <div class="bg-login">
                     <div>
                         <img src="{{ asset('assets/auth/images/users.png')}}" alt="">
