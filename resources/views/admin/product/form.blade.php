@@ -18,7 +18,6 @@
                     @else
                         {!! Form::checkbox('state',1,false,['id'=>'state']) !!}
                     @endif
-                   
                     <span class="slider round"></span>
                 </label>
             </div>

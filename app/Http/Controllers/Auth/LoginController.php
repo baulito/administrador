@@ -24,32 +24,37 @@ class LoginController extends Controller
      */
     public function login(Request $request)
     {
-        $post = $request->all();
-        $datos = [];
-        if(isset($post['email'])){
-            $datos['email'] = $post['email'];
-        } else if(isset($post['username'])){
-            $datos['user'] = $post['username'];
-        }
-       
-
-        $datos['password'] = $post['password'];
-        //print_r($datos);
-        $data = Apiservice::request("usuarios/login",$datos,1);
-        /*echo "<pre>";
-        print_r($data);*/
-        if(isset($data->access_token)){
-            Session::put('usuario',$data->usuario);
-            Session::put('access_token',$data->access_token);
-            return  redirect('/');
-        } else {
-            $error ="ha ocurrido un error intente mas tarde";
-            if(isset($data['error'])){
-                $error = $data['error'];
-            } else if(isset($data['message'])){
-                $error = $data['message'];
+        $usuario = Session::get('usuario');
+        if(!isset($usuario)){
+            $post = $request->all();
+            $datos = [];
+            if(isset($post['email'])){
+                $datos['email'] = $post['email'];
+            } else if(isset($post['username'])){
+                $datos['user'] = $post['username'];
             }
-           //return redirect('/login')->with("mensaje",$error);
+        
+
+            $datos['password'] = $post['password'];
+            //print_r($datos);
+            $data = Apiservice::request("usuarios/login",$datos,1);
+            /*echo "<pre>";
+            print_r($data);*/
+            if(isset($data->access_token)){
+                Session::put('usuario',$data->usuario);
+                Session::put('access_token',$data->access_token);
+                return redirect()->intended(Session::get('previous_url', '/'));
+            } else {
+                $error ="ha ocurrido un error intente mas tarde";
+                if(isset($data['error'])){
+                    $error = $data['error'];
+                } else if(isset($data['message'])){
+                    $error = $data['message'];
+                }
+            //return redirect('/login')->with("mensaje",$error);
+            }
+        } else {
+            return redirect('/');
         }
         
     }

@@ -16,7 +16,8 @@
             <li><a href="{{ route('category.index') }}"><i class="fas fa-tags"></i> Categorias</a></li>
             <li><a href="{{ route('campus.index') }}"><i class="fas fa-store"></i> Sedes</a></li>
             <li><a href="{{ route('product.index') }}"><i class="fas fa-shopping-basket"></i> Productos</a></li>
-            <li><a href=""><i class="fa-solid fa-users"></i> Usuarios</a></li>
+            <li><a href="{{ route('product.edicionmasiva') }}"><i class="fas fa-shopping-basket"></i>Edición masiva</a></li>
+            <li><a href="{{ route('users.index') }}"><i class="fa-solid fa-users"></i> Usuarios</a></li>
         </ul>
     </nav>
     <a href="{{ route('logout') }}" class="logout">

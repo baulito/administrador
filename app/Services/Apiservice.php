@@ -69,13 +69,10 @@ class Apiservice
                 } else {
                     echo "Error: " . $e->getMessage(); 
                 }
-              
             }  else {
                 echo "Error: " . $e->getMessage(); 
             } 
-           
         }
-       
     }
 
     public static function formatFile($file,$name){

@@ -8,6 +8,7 @@ use App\Models\Admin\Contents;
 use Illuminate\Support\Facades\Storage;
 use App\Services\upload\ImageUpload;
 use App\Services\Apiservice;
+use App\Helpers\Pagination;
 
 class ProductController extends Controller
 {
@@ -21,11 +22,34 @@ class ProductController extends Controller
         if(isset($data['category'])){
             $filtro['category'] = $data['category'];
         }
-        $contents =  Apiservice::request("product",$filtro,0);
+        if(isset($data['page'])){
+            $filtro['page'] = $data['page'];
+        }
+        $filtro['paginate'] = 30;
+        if(isset($data['listtype'])){
+            $datatype = $data;
+            unset($datatype['listtype']);
+            $urltype = request()->url()."?".http_build_query($datatype);
+        } else {
+            $urltype = request()->url()."?".http_build_query($data);
+        }
+        $productos =  Apiservice::request("product",$filtro,0);
+        /*echo "<pre>";
+        print_r($productos);*/
+        if (isset($productos->data)) {
+            $contents = $productos->data; 
+        } else {
+            $contents = [];
+        }
         $categories = $this->getCategories();
         $status = $this->getStatus();
         $campus = $this->getCampus();
-        return view('admin.product.index', compact('contents','categories','status','campus'));
+        if (isset($data['page'])) {
+            unset($data['page']);
+        }
+        $filters = $data;
+        $pagination = Pagination::getPages($productos,$data);
+        return view('admin.product.index', compact('contents','categories','status','campus','filters','pagination','urltype'));
     }
 
     public function create()
@@ -161,5 +185,50 @@ class ProductController extends Controller
             $array[$content->id] = $content->name;
         }
         return $array;
+    }
+
+
+    public function edicionMasiva(Request $request){
+        $data = $request->all();
+        $filtro = [];
+        if(isset($data['busqueda'])){
+            $filtro['search'] = $data['busqueda'];
+        }
+        if(isset($data['category'])){
+            $filtro['category'] = $data['category'];
+        }
+        if(isset($data['page'])){
+            $filtro['page'] = $data['page'];
+        }
+        $filtro['paginate'] = 30;
+        if(isset($data['listtype'])){
+            $datatype = $data;
+            unset($datatype['listtype']);
+            $urltype = request()->url()."?".http_build_query($datatype);
+        } else {
+            $urltype = request()->url()."?".http_build_query($data);
+        }
+        $productos =  Apiservice::request("product",$filtro,0);
+        /*echo "<pre>";
+        print_r($productos);*/
+        if (isset($productos->data)) {
+            $contents = $productos->data; 
+        } else {
+            $contents = [];
+        }
+        $categories = $this->getCategories();
+        $status = $this->getStatus();
+        $campus = $this->getCampus();
+        if (isset($data['page'])) {
+            unset($data['page']);
+        }
+        $filters = $data;
+        $pagination = Pagination::getPages($productos,$data);
+        return view('admin.product.edicionmasiva', compact('contents','categories','status','campus','filters','pagination','urltype'));
+    }
+
+    public function setField(Request $request){
+        $data = $request->all();
+        Apiservice::request("product/setfield",$data,1);
     }
 }

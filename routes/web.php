@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ContentsController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\CampusController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Page\HomeController;
@@ -32,7 +33,11 @@ Route::middleware([Admin::class])->group(function () {
     Route::resource('category', CategoryController::class);
     Route::post('campus/updateOrder',[CampusController::class,'updateOrder'])->name('campus.updateOrder');
     Route::resource('campus', CampusController::class);
+    Route::get('product/edicionmasiva',[ ProductController::class,'edicionMasiva'])->name('product.edicionmasiva');
+    Route::post('product/setfield',[ ProductController::class,'setField'])->name('product.setfield');
     Route::resource('product', ProductController::class);
+
+    Route::resource('users', UsersController::class);
 });
 
 
