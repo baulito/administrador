@@ -15,90 +15,62 @@
     <h1>Venta No. </h1>
     
 
-    <div className=" pl-5 pr-5 sm:container sm:mx-auto">
-        <div className="detalle-compra shadow-xl">
-            <div className="text-right">
-                <a href="/mypurchases" className="btn btn-sm btn-info">
+    <div class=" pl-5 pr-5 sm:container sm:mx-auto">
+        <div class="detalle-compra shadow-xl">
+            <div class="text-right">
+                <a href="/mypurchases" class="btn btn-sm btn-info">
                     Ir a mis compras
                 </a>
             </div>
             <?php if($content->negocio_compra_estado == 1){ ?>
                 <div>
                 <h1>Gracias por su compra</h1>
-                <div className="pagoaprobado">Tu pago fue Aprobado</div>
+                <div class="pagoaprobado">Tu pago fue Aprobado</div>
                 </div>
             <?php } else if($content->negocio_compra_estado == 2){ ?>
                 <div>
-                    <div className="pagorechazado">Tu pago fue Rechazado</div>
-                    <div className="text-center">
-                        <a className="btn btn-sm btn-info"  href="/cart" >Reintentar Pago</a> 
-                    </div>
+                    <div class="pagorechazado">Tu pago fue Rechazado</div>
                 </div>
             <?php } else { ?>
-                <div className="pagopendiente">
+                <div class="pagopendiente">
                     Tu pago se encuentra pendiente de aprobación
                 </div>
             <?php } ?>
           <div >
-            <div className="">
+            <div class="">
               <h2>Información de compra</h2>
-              <div className="">
-                <div
-                  className="row"
-                >
-                  <div className="col-sm-3">
+              <div class="">
+                <div class="row">
+                  <div class="col-sm-3">
                     <strong>Producto</strong>
                   </div>
-                  <div className="col-sm-3">
+                  <div class="col-sm-3">
                     <strong>V. Unitario</strong>
                   </div>
-                  <div className="col-sm-3">
+                  <div class="col-sm-3">
                     <strong>Cantidad</strong>
                   </div>
-                  <div className="col-sm-3">
+                  <div class="col-sm-3">
                     <strong>V.Total</strong>
                   </div>
                 </div>
               </div>
               @foreach ($content->items as $item)
-              <div className={"caja-producto-detalle"}>
-                <div
-                  className={
-                    "grid grid-cols-2  md:grid-cols-8 gap-4 items-center"
-                  }
-                >
-                  <div className={" col-span-2 md:col-span-5"}>
-                    <h3>{item.negocio_compra_item_nombre}</h3>
-                    {item.caracteristicastxt ? (
-                      <div
-                        style={{ fontSize: "12px" }}
-                        dangerouslySetInnerHTML={{
-                          __html: "" + item.caracteristicastxt,
-                        }}
-                      ></div>
-                    ) : (
-                      ""
-                    )}
+              <div class="caja-producto-detalle">
+                <div class="row">
+                  <div  class="col-sm-3">
+                    <h3>{{ $item->negocio_compra_item_nombre }}</h3>
                   </div>
-                  <div className="hidden md:inline-grid">
-                    $
-                    {item.negocio_compra_item_valor.toLocaleString(
-                      "en-us",
-                      { minimumFractionDigits: 0 }
-                    )}
+                  <div class="col-sm-3">
+                    $ {{ $item->negocio_compra_item_valor }}
+                    
                   </div>
-                  <div>
-                    <strong className="md:hidden">Cantidad: </strong>
-                    {item.negocio_compra_item_cantidad}
+                  <div  class="col-sm-3">
+                    <strong class="md:hidden">Cantidad: </strong>
+                    $ {{ $item->negocio_compra_item_cantidad }}
                   </div>
-                  <div className={"text-right"}>
-                    $
-                    {(
-                      item.negocio_compra_item_valor *
-                      item.negocio_compra_item_cantidad
-                    ).toLocaleString("en-us", {
-                      minimumFractionDigits: 0,
-                    })}
+                  <div  class="col-sm-3" >
+                    $ {{ $item->negocio_compra_item_valor * $item->negocio_compra_item_cantidad }}
                   </div>
                 </div>
               </div>
@@ -106,39 +78,16 @@
               
               <hr />
               <br />
-              <div
-                className={
-                  "grid grid-cols-3 md:grid-cols-10 gap-4 items-center mr-3"
-                }
-              >
-                <div
-                  className={"col-span-2 md:col-span-9 text-right totales"}
-                >
-                  Sub Total
-                </div>
-                <div className={"text-right"}>
-                  
-                </div>
-                <div
-                  className={"col-span-2 md:col-span-9 text-right totales"}
-                >
-                  Envio
-                </div>
-                <div className={"text-right"}>
-                  $
-                  
-                </div>
-                <div
-                  className={"col-span-2 md:col-span-9 text-right totales"}
-                >
-                  Total
-                </div>
-                <div className={"text-right"}>
-                  
-                </div>
+              <div>
+                <div>Sub Total</div>
+                <div>$</div>
+                <div>Envio</div>
+                <div>$</div>
+                <div>Total</div>
+                <div>$</div>
               </div>
             </div>
-            <div className="text-left">
+            <div class="text-left">
               <h2>Información de pago</h2>
               <div>
                 <strong>Estado pago:</strong>{" "}
@@ -158,13 +107,13 @@
             
                 <?php if($content->negocio_compra_estado == 0 && $content->negocio_compra_tipopago ){ ?>
                 <a
-                  className="btn btn-sm btn-info"
+                  class="btn btn-sm btn-info"
                   href={{$content->negocio_compra_urlefecty}}
                 >
                   Tiket de pago
                 </a>
              <?php } ?>
-              <div className="datosconfidenciales">
+              <div class="datosconfidenciales">
                 El Baulito.co no almacena datos de medios de pago.
               </div>
               <br />
@@ -188,12 +137,12 @@
                 <div>
                   <br />
                   <h2>Estado de tu envio</h2>
-                  <div className="estadoenvio">
+                  <div class="estadoenvio">
                     <h3>Envio en preparación</h3>
                     <div>{datet}</div>
                   </div>
                   @foreach ($content->informacionenvio->tracking as $traking)
-                    <div className="estadoenvio">
+                    <div class="estadoenvio">
                         <h3>{{ $traking->updateState}}</h3>
                         <div>>{{ $traking->date}}</div>
                     </div>
