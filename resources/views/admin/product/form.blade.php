@@ -51,7 +51,7 @@
     </div>
     @for ($i = 1; $i < 10; $i++)
         <?php 
-            $nameimageurl = 'image_url_'.$i;
+            $nameimageurl = 'image_'.$i;
             $nameimage = 'image_'.$i;
         ?>
         <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2">
