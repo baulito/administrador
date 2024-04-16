@@ -17,5 +17,11 @@ class SalesController extends Controller
         return view('admin.sales.index', compact('contents'));
     }
 
+    public function show($id)
+    {
+        $content =  Apiservice::request("compra/detallecompra/".$id,[],0);
+        return view('admin.sales.detail', compact('content'));
+    }
+
     
 }

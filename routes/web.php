@@ -43,9 +43,8 @@ Route::middleware([Admin::class])->group(function () {
 
     Route::post('banner/updateOrder',[BannerController::class,'updateOrder'])->name('banner.updateOrder');
     Route::resource('banner', BannerController::class);
-    
     Route::get('ventas', [SalesController::class,'index'])->name('sales.index');
-
+    Route::get('ventas/detail/{id}', [SalesController::class,'show'])->name('sales.show');
 });
 
 

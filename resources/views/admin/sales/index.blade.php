@@ -31,8 +31,7 @@
                     <td>${{ number_format($content->total) }}</td>
                     <td>{{ $content->estadopago }}</td>
                     <td>
-                        <a style="display: none" href="{{ route('contents.show', $content->compra_id) }}" class="btn btn-info">Ver</a>
-                       
+                        <a  href="{{ route('sales.show', $content->compra_id) }}" class="btn btn-info">Ver</a>
                     </td>
                 </tr>
             @endforeach
