@@ -132,7 +132,7 @@
                 {{$content->negocio_compra_direccion}}
               </div>
 
-              @if ($content->informacionenvio && $content->informacionenvio->tracking)
+              @if (isset($content->informacionenvio) && isset($content->informacionenvio->tracking))
                   
                 <div>
                   <br />
