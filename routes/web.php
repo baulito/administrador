@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ContentsController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\CampusController;
 use App\Http\Controllers\Admin\ProductController;
@@ -38,6 +39,9 @@ Route::middleware([Admin::class])->group(function () {
     Route::resource('product', ProductController::class);
 
     Route::resource('users', UsersController::class);
+
+    Route::post('banner/updateOrder',[BannerController::class,'updateOrder'])->name('banner.updateOrder');
+    Route::resource('banner', BannerController::class);
 });
 
 

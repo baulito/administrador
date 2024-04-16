@@ -15,5 +15,6 @@ class VerifyCsrfToken extends Middleware
         '/segurosdeviaje/buscar',
         '/segurosdeviaje/checkout',
         '/product/setfield',
+        '/campus/*'
     ];
 }
