@@ -12,45 +12,39 @@
             </nav>
         </div>
     </div>
-    <h1>Venta No. </h1>
+    <h1>Venta No. {{ $content->negocio_compra_id }}</h1>
     
 
     <div class=" pl-5 pr-5 sm:container sm:mx-auto">
         <div class="detalle-compra shadow-xl">
-            <div class="text-right">
-                <a href="/mypurchases" class="btn btn-sm btn-info">
-                    Ir a mis compras
-                </a>
-            </div>
             <?php if($content->negocio_compra_estado == 1){ ?>
                 <div>
-                <h1>Gracias por su compra</h1>
-                <div class="pagoaprobado">Tu pago fue Aprobado</div>
+                <div class="pagoaprobado"> El pago fue Aprobado</div>
                 </div>
             <?php } else if($content->negocio_compra_estado == 2){ ?>
                 <div>
-                    <div class="pagorechazado">Tu pago fue Rechazado</div>
+                    <div class="pagorechazado">El pago fue Rechazado</div>
                 </div>
             <?php } else { ?>
                 <div class="pagopendiente">
-                    Tu pago se encuentra pendiente de aprobación
+                    El pago se encuentra pendiente de aprobación
                 </div>
             <?php } ?>
           <div >
             <div class="">
               <h2>Información de compra</h2>
-              <div class="">
+              <div class="encabezado-producto">
                 <div class="row">
                   <div class="col-sm-3">
                     <strong>Producto</strong>
                   </div>
-                  <div class="col-sm-3">
+                  <div class="col-sm-3 text-end">
                     <strong>V. Unitario</strong>
                   </div>
-                  <div class="col-sm-3">
+                  <div class="col-sm-3 text-end">
                     <strong>Cantidad</strong>
                   </div>
-                  <div class="col-sm-3">
+                  <div class="col-sm-3 text-end">
                     <strong>V.Total</strong>
                   </div>
                 </div>
@@ -59,32 +53,28 @@
               <div class="caja-producto-detalle">
                 <div class="row">
                   <div  class="col-sm-3">
-                    <h3>{{ $item->negocio_compra_item_nombre }}</h3>
+                    {{ $item->negocio_compra_item_nombre }}
                   </div>
-                  <div class="col-sm-3">
-                    $ {{ $item->negocio_compra_item_valor }}
+                  <div class="col-sm-3 text-end">
+                    $ {{ number_format($item->negocio_compra_item_valor) }}
                     
                   </div>
-                  <div  class="col-sm-3">
-                    <strong class="md:hidden">Cantidad: </strong>
-                    $ {{ $item->negocio_compra_item_cantidad }}
+                  <div  class="col-sm-3 text-end">
+                    {{ $item->negocio_compra_item_cantidad }}
                   </div>
-                  <div  class="col-sm-3" >
-                    $ {{ $item->negocio_compra_item_valor * $item->negocio_compra_item_cantidad }}
+                  <div  class="col-sm-3 text-end" >
+                    $ {{ number_format($item->negocio_compra_item_valor * $item->negocio_compra_item_cantidad) }}
                   </div>
                 </div>
               </div>
               @endforeach
-              
-              <hr />
-              <br />
-              <div>
-                <div>Sub Total</div>
-                <div>$</div>
-                <div>Envio</div>
-                <div>$</div>
-                <div>Total</div>
-                <div>$</div>
+              <div class="row text-end">
+                <div class="col-sm-9 "><strong>Sub Total</strong></div>
+                <div class="col-sm-3">$ {{ number_format($content->negocio_compra_subtotal) }}</div>
+                <div class="col-sm-9"><strong>Envio</strong></div>
+                <div class="col-sm-3">$ {{ number_format($content->negocio_compra_valor_envio) }}</div>
+                <div class="col-sm-9"><strong>Total</strong></div>
+                <div class="col-sm-3">$ {{ number_format($content->negocio_compra_valor) }}</div>
               </div>
             </div>
             <div class="text-left">
@@ -153,4 +143,37 @@
           </div>
         </div>
       </div>
+
+      <style>
+        .pagoaprobado,.pagorechazado,.pagoapendiente{
+            font-size: 30px;
+            text-align: center;
+        }
+        .pagoaprobado{
+            color: green;
+        }
+
+        .pagorechazado{
+            color: red;
+        }
+        .pagoapendiente{
+            color: #666;
+        }
+
+        .detalle-compra h2{
+            color:blue;
+            font-size: 20px
+        }
+
+        .caja-producto-detalle{
+            padding-top: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #CCC;
+        }
+
+        .encabezado-producto{
+            border-bottom: 1px solid #CCC;
+            border-top: 1px solid #CCC;
+        }
+      </style>
 @endsection
