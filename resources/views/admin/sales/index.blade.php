@@ -18,6 +18,7 @@
                 <th>Nombre</th>
                 <th>Celular</th>
                 <th>Total</th>
+                <th>Estado</th>
                 <th style="width: 200px">Acciones</th>
             </tr>
         </thead>
@@ -27,7 +28,8 @@
                     <td>{{ $content->fecha }}</td>
                     <td>{{ $content->nombre }}</td>
                     <td>{{ $content->celular }}</td>
-                    <td>{{ $content->total }}</td>
+                    <td>${{ number_format($content->total) }}</td>
+                    <td>{{ $content->estadopago }}</td>
                     <td>
                         <a style="display: none" href="{{ route('contents.show', $content->compra_id) }}" class="btn btn-info">Ver</a>
                        
