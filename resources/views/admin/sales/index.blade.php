@@ -29,13 +29,8 @@
                     <td>{{ $content->celular }}</td>
                     <td>{{ $content->total }}</td>
                     <td>
-                        <a style="display: none" href="{{ route('contents.show', $content->id) }}" class="btn btn-info">Ver</a>
-                        <a href="{{ route('category.edit', $content->id) }}" class="btn btn-primary">Editar</a>
-                        <form action="{{ route('category.destroy', $content->id) }}" method="post" style="display:inline">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
-                        </form>
+                        <a style="display: none" href="{{ route('contents.show', $content->compra_id) }}" class="btn btn-info">Ver</a>
+                       
                     </td>
                 </tr>
             @endforeach
