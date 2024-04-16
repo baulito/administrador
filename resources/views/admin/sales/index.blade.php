@@ -23,7 +23,7 @@
         </thead>
         <tbody>
             @foreach($contents as $content)
-                <tr data-id="{{ $content->id }}">
+                <tr data-id="{{ $content->compra_id }}">
                     <td>{{ $content->fecha }}</td>
                     <td>{{ $content->nombre }}</td>
                     <td>{{ $content->celular }}</td>
