@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\CampusController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SalesController;
 use App\Http\Controllers\Page\HomeController;
 use App\Http\Controllers\Page\SegurosController;
 use App\Http\Middleware\Admin;
@@ -42,6 +43,9 @@ Route::middleware([Admin::class])->group(function () {
 
     Route::post('banner/updateOrder',[BannerController::class,'updateOrder'])->name('banner.updateOrder');
     Route::resource('banner', BannerController::class);
+    
+    Route::get('ventas', [SalesController::class,'index'])->name('sales.index');
+
 });
 
 
