@@ -54,4 +54,4 @@ MIX_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
 
 SITE_NAME="Administrador Baulito"
 
-API_URL="https://api.baulito.co/api/"
+API_URL="https://api.baulito.store/api/"
