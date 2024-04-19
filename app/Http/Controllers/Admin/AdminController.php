@@ -22,8 +22,8 @@ class AdminController extends Controller
     public function loginmipaquete(Request $request){
         $data = $request->all();
         $res = Apiservice::request("mipaquete/login",$data,1);
-        echo "<pre>";
-        print_r($res);
-        //return redirect()->route('home-admin');
+        /*echo "<pre>";
+        print_r($res);*/
+        return redirect()->route('home-admin');
     }
 }
