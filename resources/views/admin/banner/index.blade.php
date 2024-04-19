@@ -42,8 +42,8 @@
                         <a style="display: none" href="{{ route('contents.show', $content->id) }}" class="btn btn-info">Ver</a>
                         <a href="{{ route('banner.edit', $content->id) }}" class="btn btn-primary">Editar</a>
                         <form action="{{ route('banner.destroy', $content->id) }}" method="post" style="display:inline">
-                            @csrf
-                            @method('DELETE')
+                             @csrf
+                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
                     </td>

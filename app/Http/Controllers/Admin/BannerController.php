@@ -57,7 +57,7 @@ class BannerController extends Controller
     public function destroy($id)
     {
         Apiservice::request("banner/delete/".$id,[],2);
-        return redirect()->route('contents.index')->with('success', 'Contenido eliminado exitosamente.');
+        return redirect()->route('banner.index')->with('success', 'Contenido eliminado exitosamente.');
     }
 
     public function updateOrder(Request $request)
