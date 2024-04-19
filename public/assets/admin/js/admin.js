@@ -123,4 +123,13 @@ $(document).ready(function () {
             console.log("no hace nada");
         }
     });
+
+    $("#btn-cambiar-mipaquete").on("click",function(){
+        $("#login-mipaquete").show();
+        $("#info-mipaquete").hide();
+    });
+    $("#btn-cancelar-mipaquete").on("click",function(){
+        $("#login-mipaquete").hide();
+        $("#info-mipaquete").show();
+    });
 });

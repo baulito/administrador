@@ -433,6 +433,26 @@ input:checked+.slider:before {
 .table-edicion.table-hover tbody tr:hover td {
   background-color: #aab6c9!important; /* Cambia el color de fondo cuando se pasa el mouse */
 }
+
+.box-mipaquete{
+    border:1px solid #CCC;
+    padding: 20px;
+    text-align: center;
+    word-wrap: break-word;
+}
+
+.box-mipaquete img{
+  max-height: 150px;
+}
+.box-mipaquete #info-mipaquete h3{
+  font-size: 20px;
+  font-weight: bold;
+}
+.box-mipaquete #login-mipaquete{
+  display: none;
+}
+
+
 @media (max-width: 1200px) {
     .data-content{
       margin-left: 40px!important ;

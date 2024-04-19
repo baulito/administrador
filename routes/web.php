@@ -29,6 +29,8 @@ Route::post('/login',[LoginController::class,'login'])->name('login-post')->midd
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 Route::middleware([Admin::class])->group(function () {
     Route::get('',[AdminController::class,'home'])->name('home-admin');
+    Route::post('loginmipaquete',[AdminController::class,'loginmipaquete'])->name('loginmipaquete-admin');
+
     Route::any('contents/updateOrder',[ContentsController::class,'updateOrder'])->name('contents.updateOrder');
     Route::resource('contents', ContentsController::class);
     Route::post('category/updateOrder',[CategoryController::class,'updateOrder'])->name('category.updateOrder');
