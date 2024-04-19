@@ -1,7 +1,7 @@
 <div class="row">
     @foreach($contents as $content)
             <div class="col-sm-6 col-md-4 col-lg-3 col-xxl-2">
-                <div class="box_product">
+                <div class="box_product <?php if( $content->state != 1 || $content->amount < 1 ){ echo "product_out"; } ?>">
                     @if (isset($content->thumbnail))
                         <div class="image" style="background-image: url({{ asset($content->thumbnail) }})"></div> 
                     @else

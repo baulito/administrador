@@ -22,7 +22,13 @@
                     {!! Form::label('category', 'Categoria:',['class' => 'form-label']) !!}
                     {!! Form::select('category', $categories, isset($filters['category']) ? $filters['category'] : null, ['class' => 'form-control']) !!}
                 </div>
-                <div class="col-sm-3"></div>
+                <div class="col-sm-3">
+                    {!! Form::label('out', 'Estado:',['class' => 'form-label']) !!}
+                    <select name="out" id="out" class="form-control" >
+                        <option value="1">Activos</option>
+                        <option value="2" <?php if(isset($filters['out']) &&  $filters['out']== 2){ echo "selected";} ?>>Inactivos</option>
+                    </select>
+                </div>
                 <div class="col-sm-3 ">
                     <div for="" class="form-label">&nbsp;</div>
                     <div class="d-grid">

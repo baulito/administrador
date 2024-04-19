@@ -22,6 +22,11 @@ class ProductController extends Controller
         if(isset($data['category'])){
             $filtro['category'] = $data['category'];
         }
+        if(!isset($data['out'])  ){
+            $filtro['out'] = 1;
+        } else {
+            $filtro['out'] = $data['out'];
+        }
         if(isset($data['page'])){
             $filtro['page'] = $data['page'];
         }
@@ -199,6 +204,11 @@ class ProductController extends Controller
         }
         if(isset($data['page'])){
             $filtro['page'] = $data['page'];
+        }
+        if(!isset($data['out'])  ){
+            $filtro['out'] = 1;
+        } else {
+            $filtro['out'] = $data['out'];
         }
         $filtro['paginate'] = 30;
         if(isset($data['listtype'])){

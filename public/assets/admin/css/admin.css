@@ -323,6 +323,9 @@ input:checked+.slider:before {
   margin-top: 10px;
 }
 
+.box_product.product_out{
+  filter:grayscale(100%);
+}
 .box_product .image {
   width: 100%;
   height: 200px;
