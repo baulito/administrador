@@ -130,7 +130,7 @@ class ProductController extends Controller
     public function destroy($id)
     {
         Apiservice::request("product/delete/".$id,[],2);
-        return redirect()->route('product.index')->with('success', 'Contenido eliminado exitosamente.');
+        //return redirect()->route('product.index')->with('success', 'Contenido eliminado exitosamente.');
     }
 
     public function updateOrder(Request $request)

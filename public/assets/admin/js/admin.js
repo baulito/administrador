@@ -132,4 +132,34 @@ $(document).ready(function () {
         $("#login-mipaquete").hide();
         $("#info-mipaquete").show();
     });
+
+    $(document).on('click', '.eliminar-btn', function () {
+        console.log("enrtro a eliminar");
+        var registroId = $(this).data('id');
+        var modal = $('#confirmarEliminarModal');
+        modal.find('.modal-body').html('<p>¿Estás seguro de que quieres eliminar este registro?</p>');
+        modal.find('#confirmarEliminarBtn').attr('data-id', registroId);
+        modal.modal('show');
+    });
+
+    $(document).on('click','#confirmarEliminarBtn', function(){
+        var id = $(this).data('id');
+        var form = $("#form-delete-"+id);
+        var formData = form.serialize();
+        $('.main-loader').show();
+        $.ajax({
+            url: form.attr('action'),
+            type: 'DELETE',
+            data: formData,
+            success: function(response) {
+                // Manejar la respuesta del servidor
+                window.location.reload();
+            },
+            error: function(xhr, status, error) {
+                // Manejar errores de la petición AJAX
+                console.error(xhr.responseText);
+            }
+        });
+    });
+
 });

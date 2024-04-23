@@ -1,6 +1,7 @@
 <table class="table table-striped table-bordered table-edicion mt-5 table-hover">
     <thead>
         <tr>
+            <th></th>
             <th>Imagen</th>
             <th>Nombre</th>
             <th>SKU</th>
@@ -19,6 +20,13 @@
     <tbody>
         @foreach($contents as $content)
             <tr>
+                <td>
+                    <a class="btn btn-danger eliminar-btn" data-toggle="modal" data-target="#confirmarEliminarModal" data-id="{{ $content->id }}"><i class="fas fa-trash-alt"></i></a>
+                    <form action="{{ route('product.destroy', $content->id) }}" id="form-delete-{{  $content->id }}" method="post" class="d-grid">
+                        @csrf
+                        @method('DELETE')
+                    </form>
+                </td>
                 <td>
                     @if (isset($content->thumbnail))
                         <div class="image-min"> <img src="{{ asset($content->thumbnail) }}" alt=""></div> 

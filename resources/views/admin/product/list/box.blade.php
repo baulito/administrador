@@ -15,10 +15,10 @@
                                 <a href="{{ route('product.edit', $content->id) }}" class="btn btn-primary btn-sm btn-block">Editar</a>
                             </div>
                             <div class="col-6 d-grid">
-                                <form action="{{ route('product.destroy', $content->id) }}" method="post" class="d-grid">
+                                <a class="btn btn-danger eliminar-btn" data-toggle="modal" data-target="#confirmarEliminarModal" data-id="{{ $content->id }}"><i class="fas fa-trash-alt"></i></a>
+                                <form action="{{ route('product.destroy', $content->id) }}" id="form-delete-{{  $content->id }}" method="post" class="d-grid">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-danger btn-block">Eliminar</button>
                                 </form>
                             </div>
                         </div>

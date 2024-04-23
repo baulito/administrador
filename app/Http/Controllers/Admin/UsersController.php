@@ -55,8 +55,10 @@ class UsersController extends Controller
         if ($request->file("image")) {
             $post['image'] = curl_file_create($_FILES['image']['tmp_name'], $_FILES['image']['type'], $_FILES['image']['name']);
         }
-        Apiservice::request("user/create",$post,1);
-        return redirect()->route('users.index')->with('success', 'Contenido creado exitosamente.');
+        $res = Apiservice::request("user/create",$post,1);
+        print_r($res);
+        
+        //return redirect()->route('users.index')->with('success', 'Contenido creado exitosamente.');
     }
 
     public function show(Contents $content)
