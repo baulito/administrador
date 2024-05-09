@@ -83,6 +83,7 @@
                 <strong>Estado pago:</strong>{" "}
                 {{$content->negocio_compra_estado_texto}}
               </div>
+              @if (isset($content->infopago) && isset($content->infopago->tipo))
                 <div>
                   <div>
                     <strong>Pagado con:</strong> {{$content->infopago->tipo}}
@@ -94,6 +95,8 @@
                     <strong>Fecha de pago:</strong> {{$content->infopago->fecha}}
                   </div>
                 </div>
+              @endif
+                
             
                 <?php if($content->negocio_compra_estado == 0 && $content->negocio_compra_tipopago ){ ?>
                 <a
