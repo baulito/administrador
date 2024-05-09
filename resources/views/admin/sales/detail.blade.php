@@ -80,7 +80,7 @@
             <div class="text-left">
               <h2>Información de pago</h2>
               <div>
-                <strong>Estado pago:</strong>{" "}
+                <strong>Estado pago:</strong>
                 {{$content->negocio_compra_estado_texto}}
               </div>
               @if (isset($content->infopago) && isset($content->infopago->tipo))
