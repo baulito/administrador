@@ -19,6 +19,7 @@
                 <th>Celular</th>
                 <th>Total</th>
                 <th>Estado</th>
+                <th>Envio</th>
                 <th style="width: 200px">Acciones</th>
             </tr>
         </thead>
@@ -30,6 +31,21 @@
                     <td>{{ $content->celular }}</td>
                     <td>${{ number_format($content->total) }}</td>
                     <td>{{ $content->estadopago }}</td>
+                    <td>
+                        @if ($content->estadopagocode == 1)
+                            @if ($content->mipaquete == 1)
+                                @if (isset($content->informacionenvio[0]))
+                                    {{  $content->informacionenvio[0]->estadoactual }}
+                                @else
+                                    No se ha generado envio
+                                @endif
+                            @else
+                                Recogida en Tienda
+                            @endif
+                        @else
+                            No aplica
+                        @endif
+                    </td>
                     <td>
                         <a  href="{{ route('sales.show', $content->compra_id) }}" class="btn btn-info">Ver</a>
                     </td>

@@ -455,6 +455,39 @@ input:checked+.slider:before {
   display: none;
 }
 
+.info-paquete{
+  padding: 10px;
+  border: 1px solid #CCC;
+  margin-bottom: 20px;
+}
+
+.info-paquete h3{
+  font-weight: bold;
+  color: var(--font-color);
+  font-size: 14px;
+}
+
+.info-paquete .estadoenvio{
+  background: #EEE;
+  padding: 5px;
+  border-radius:0.5em ;
+  font-size: 14px;
+}
+.info-paquete .estadoenvio h4{
+  color:#666 ;
+  font-size: 14px;
+  font-weight: bold;
+  margin:0;
+}
+
+.info-paquete .estadoenvio.actual{
+  background: green;
+  color: #FFF;
+}
+.info-paquete .estadoenvio.actual h4{
+  color: #FFF;
+}
+
 
 @media (max-width: 1200px) {
     .data-content{

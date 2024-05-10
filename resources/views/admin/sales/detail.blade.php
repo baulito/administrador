@@ -78,69 +78,86 @@
               </div>
             </div>
             <div class="text-left">
-              <h2>Información de pago</h2>
-              <div>
-                <strong>Estado pago:</strong>
-                {{$content->negocio_compra_estado_texto}}
-              </div>
-              @if (isset($content->infopago) && isset($content->infopago->tipo))
-                <div>
-                  <div>
-                    <strong>Pagado con:</strong> {{$content->infopago->tipo}}
-                  </div>
-                  <div>
-                    <strong>Medio de pago:</strong> {{$content->infopago->entidad}}
-                  </div>
-                  <div>
-                    <strong>Fecha de pago:</strong> {{$content->infopago->fecha}}
-                  </div>
+              <br><br>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>Información de pago</h2>
+                        <div>
+                          <strong>Estado pago:</strong>
+                          {{$content->negocio_compra_estado_texto}}
+                        </div>
+                        @if (isset($content->infopago) && isset($content->infopago->tipo))
+                          <div>
+                            <div>
+                              <strong>Pagado con:</strong> {{$content->infopago->tipo}}
+                            </div>
+                            <div>
+                              <strong>Medio de pago:</strong> {{$content->infopago->entidad}}
+                            </div>
+                            <div>
+                              <strong>Fecha de pago:</strong> {{$content->infopago->fecha}}
+                            </div>
+                          </div>
+                        @endif
+                        <?php if($content->negocio_compra_estado == 0 && $content->negocio_compra_tipopago ){ ?>
+                          <a
+                            class="btn btn-sm btn-info"
+                            href={{$content->negocio_compra_urlefecty}}
+                          >
+                            Tiket de pago
+                          </a>
+                       <?php } ?>
+                        <div class="datosconfidenciales">
+                          El Baulito.co no almacena datos de medios de pago.
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <h2>Información de Envio</h2>
+                      @if ($content->negocio_compra_mipaquete == 1)
+                        <div>
+                          <strong>Nombre: </strong>
+                          {{$content->negocio_compra_nombre}}
+                        </div>
+                        <div>
+                          <strong>Correo: </strong>
+                          {{$content->negocio_compra_correo}}
+                        </div>
+                        <div>
+                          <strong>Dirección: </strong>
+                          {{$content->negocio_compra_direccion}}
+                        </div>
+                      @else
+                        <div>El Cliente recogera el envio en la tienda</div>
+                      @endif
+                    </div>
                 </div>
-              @endif
-                
-            
-                <?php if($content->negocio_compra_estado == 0 && $content->negocio_compra_tipopago ){ ?>
-                <a
-                  class="btn btn-sm btn-info"
-                  href={{$content->negocio_compra_urlefecty}}
-                >
-                  Tiket de pago
-                </a>
-             <?php } ?>
-              <div class="datosconfidenciales">
-                El Baulito.co no almacena datos de medios de pago.
-              </div>
-              <br />
-
-              <h2>Información de Envio</h2>
-              <div>
-                <strong>Nombre: </strong>
-                {{$content->negocio_compra_nombre}}
-              </div>
-              <div>
-                <strong>Correo: </strong>
-                {{$content->negocio_compra_correo}}
-              </div>
-              <div>
-                <strong>Dirección: </strong>
-                {{$content->negocio_compra_direccion}}
-              </div>
-
-              @if (isset($content->informacionenvio) && isset($content->informacionenvio->tracking))
+              
+              
+              
+                <br><br>
+              @if (isset($content->informacionenvio) && isset($content->informacionenvio[0]))
                   
                 <div>
-                  <br />
                   <h2>Estado de tu envio</h2>
-                  <div class="estadoenvio">
-                    <h3>Envio en preparación</h3>
-                    <div>{datet}</div>
-                  </div>
-                  @foreach ($content->informacionenvio->tracking as $traking)
-                    <div class="estadoenvio">
-                        <h3>{{ $traking->updateState}}</h3>
-                        <div>>{{ $traking->date}}</div>
-                    </div>
+                  @foreach ($content->informacionenvio as $key => $informacion)
+                      <div class="info-paquete">
+                          @if (count($content->informacionenvio) > 1)
+                            <h3>Paquete No. {{ $key+1 }}</h3>
+                          @endif
+                          <div class="row">
+                            @foreach ($informacion->seguimiento as $pos => $traking)
+                                <div class="col-sm-3" >
+                                    <div class="estadoenvio <?php if(($pos+1) == count($informacion->seguimiento) ){ echo "actual"; } ?>">
+                                        <h4>{{ $traking->estado}}</h4>
+                                        <div>{{ $traking->fecha}}</div>
+                                    </div>
+                                </div>
+                            @endforeach
+                          </div>
+                      </div>
                   @endforeach
                 </div>
+                
             @endif
             </div>
           </div>
