@@ -33,7 +33,7 @@
                     <td>{{ $content->estadopago }}</td>
                     <td>
                         @if ($content->estadopagocode == 1)
-                            @if ($content->mipaquete == 1)
+                            @if ($content->tipoenvio != 1)
                                 @if (isset($content->informacionenvio[0]))
                                     {{  $content->informacionenvio[0]->estadoactual }}
                                 @else

@@ -47,6 +47,7 @@ Route::middleware([Admin::class])->group(function () {
     Route::resource('banner', BannerController::class);
     Route::get('ventas', [SalesController::class,'index'])->name('sales.index');
     Route::get('ventas/detail/{id}', [SalesController::class,'show'])->name('sales.show');
+    Route::get('ventas/generarguia/{id}', [SalesController::class,'generarGuia'])->name('sales.generarGuia');
 });
 
 

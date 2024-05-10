@@ -20,7 +20,18 @@ class SalesController extends Controller
     public function show($id)
     {
         $content =  Apiservice::request("compra/detallecompra/".$id,[],0);
-        return view('admin.sales.detail', compact('content'));
+        if(((isset($content->informacionenvio) && !isset($content->informacionenvio[0])) ||(!isset($content->informacionenvio)) ) && $content->negocio_compra_tipoenvio != 1 ){
+            $generacionGuia =  Apiservice::request("ventas/validargeneracionenvio/".$id,[],0);
+        } else {
+            $generacionGuia = false;
+        }
+        return view('admin.sales.detail', compact('content','generacionGuia'));
+    }
+
+    public function generarGuia($id)
+    {
+        //var_dump($id);
+        Apiservice::request("ventas/generarenvio/".$id,[],0);
     }
 
     

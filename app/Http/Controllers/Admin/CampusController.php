@@ -79,7 +79,7 @@ class CampusController extends Controller
     public function destroy($id)
     {
         Apiservice::request("campus/delete/".$id,[],2);
-        return redirect()->route('contents.index')->with('success', 'Contenido eliminado exitosamente.');
+        return redirect()->route('campus.index')->with('success', 'Contenido eliminado exitosamente.');
     }
 
     public function updateOrder(Request $request)

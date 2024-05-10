@@ -88,7 +88,7 @@ class UsersController extends Controller
     public function destroy($id)
     {
         Apiservice::request("user/delete/".$id,[],2);
-        return redirect()->route('contents.index')->with('success', 'Contenido eliminado exitosamente.');
+        return redirect()->route('users.index')->with('success', 'Contenido eliminado exitosamente.');
     }
 
 

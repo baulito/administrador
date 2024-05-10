@@ -465,6 +465,13 @@ input:checked+.slider:before {
   font-weight: bold;
   color: var(--font-color);
   font-size: 14px;
+  margin:0;
+}
+
+.info-paquete .guia-paquete{
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
 
 .info-paquete .estadoenvio{

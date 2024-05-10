@@ -112,8 +112,9 @@
                         </div>
                     </div>
                     <div class="col-sm-6">
+                      
+                      @if ($content->negocio_compra_tipoenvio != 1)
                       <h2>Información de Envio</h2>
-                      @if ($content->negocio_compra_mipaquete == 1)
                         <div>
                           <strong>Nombre: </strong>
                           {{$content->negocio_compra_nombre}}
@@ -127,7 +128,13 @@
                           {{$content->negocio_compra_direccion}}
                         </div>
                       @else
-                        <div>El Cliente recogera el envio en la tienda</div>
+                        <h2>El Cliente recogera el paquete en: </h2>
+                        @if ($content->campus)
+                          <div> <strong>Sede: </strong> {{ $content->campus->name }}</div>
+                          <div> <strong>Dirección: </strong> {{ $content->campus->address }}  {{ $content->campus->additional }}</div>
+                          <div> <strong>Ciudad: </strong> {{ $content->campus->cityname }}</div>
+                        @endif
+                        
                       @endif
                     </div>
                 </div>
@@ -135,30 +142,57 @@
               
               
                 <br><br>
-              @if (isset($content->informacionenvio) && isset($content->informacionenvio[0]))
-                  
-                <div>
-                  <h2>Estado de tu envio</h2>
-                  @foreach ($content->informacionenvio as $key => $informacion)
-                      <div class="info-paquete">
-                          @if (count($content->informacionenvio) > 1)
-                            <h3>Paquete No. {{ $key+1 }}</h3>
-                          @endif
-                          <div class="row">
-                            @foreach ($informacion->seguimiento as $pos => $traking)
-                                <div class="col-sm-3" >
-                                    <div class="estadoenvio <?php if(($pos+1) == count($informacion->seguimiento) ){ echo "actual"; } ?>">
-                                        <h4>{{ $traking->estado}}</h4>
-                                        <div>{{ $traking->fecha}}</div>
+                @if ($content->negocio_compra_tipoenvio != 1)
+                    @if (isset($content->informacionenvio) && isset($content->informacionenvio[0]))
+                        <div>
+                            <h2>Estado de tu envio</h2>
+                            @foreach ($content->informacionenvio as $key => $informacion)
+                                <div class="info-paquete">
+                                  <div class="row">
+                                      <div class="col-sm-9">
+                                        <h3>Paquete enviado por {{ $informacion->transportadora }} desde  {{ $informacion->desde }}</h3>
+                                        <div class="guia-paquete">No de guia:  {{ $informacion->guide }}</div>
+                                      </div>
+                                      <div class="col-sm-3 text-right">
+                                         @if (isset($informacion->pdfGuide))
+                                             <a class="btn btn-sm btn-primary" href="{{ $informacion->pdfGuide }}" target="_blank">Descargar Guía</a>
+                                         @endif
+                                      </div>
+                                  </div>
+                                  
+                                    @if (count($content->informacionenvio) > 1)
+
+                                      <h3>Paquete No. {{ $key+1 }}</h3>
+                                    @endif
+                                    <div class="row">
+                                      @foreach ($informacion->seguimiento as $pos => $traking)
+                                          <div class="col-sm-3" >
+                                              <div class="estadoenvio <?php if(($pos+1) == count($informacion->seguimiento) ){ echo "actual"; } ?>">
+                                                  <h4>{{ $traking->estado}}</h4>
+                                                  <div>{{ $traking->fecha}}</div>
+                                              </div>
+                                          </div>
+                                      @endforeach
                                     </div>
                                 </div>
                             @endforeach
-                          </div>
-                      </div>
-                  @endforeach
-                </div>
-                
-            @endif
+                        </div>
+                    @else
+                        <div>
+                            <h2>No se ha generado una guía</h2>
+                            @if ($generacionGuia->susses == true)
+                                <button class="btn btn-info" id="generarguia" data-id="{{ $content->negocio_compra_id }}">Generar Guía</button>
+                            @else
+                                <div>{{ $generacionGuia->message  }}</div>
+                            @endif
+                        </div>
+                    @endif
+                @else
+                    <div>
+                          <h2></h2>
+                    </div>
+                @endif
+            </div>
             </div>
           </div>
         </div>

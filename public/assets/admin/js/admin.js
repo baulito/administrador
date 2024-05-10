@@ -162,4 +162,14 @@ $(document).ready(function () {
         });
     });
 
+    $(document).on('click','#generarguia', function(){
+        $('.main-loader').show();
+        var id = $(this).data('id');
+        console.log(id);
+        $.get("/ventas/generarguia/"+id,function(){
+            window.location.reload();
+        });
+    });
+    
+
 });
