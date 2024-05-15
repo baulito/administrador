@@ -178,14 +178,16 @@
                             @endforeach
                         </div>
                     @else
-                        <div>
-                            <h2>No se ha generado una guía</h2>
-                            @if ($generacionGuia->susses == true)
-                                <button class="btn btn-info" id="generarguia" data-id="{{ $content->negocio_compra_id }}">Generar Guía</button>
-                            @else
-                                <div>{{ $generacionGuia->message  }}</div>
-                            @endif
-                        </div>
+                        @if ( $content->negocio_compra_estado == 1)
+                            <div>
+                                <h2>No se ha generado una guía</h2>
+                                @if ($generacionGuia->susses == true)
+                                    <button class="btn btn-info" id="generarguia" data-id="{{ $content->negocio_compra_id }}">Generar Guía</button>
+                                @else
+                                    <div>{{ $generacionGuia->message  }}</div>
+                                @endif
+                            </div>
+                        @endif
                     @endif
                 @else
                     <div>
