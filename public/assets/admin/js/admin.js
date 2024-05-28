@@ -71,6 +71,12 @@ $(document).ready(function () {
         $("#imagemodal").modal("show"); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
     });
 
+    $("body").on("click", ".zoom-image", function (e) {
+        var src = $(this).data("image");
+        $("#imagepreview").attr("src", src); // here asign the image to the modal when the user click the enlarge link
+        $("#imagemodal").modal("show"); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
+    });
+
     var tags = new Bloodhound({
         limit: 10,
         queryTokenizer: Bloodhound.tokenizers.whitespace,

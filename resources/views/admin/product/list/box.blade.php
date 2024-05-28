@@ -3,12 +3,20 @@
             <div class="col-sm-6 col-md-4 col-lg-3 col-xxl-2">
                 <div class="box_product <?php if( $content->state != 1 || $content->amount < 1 ){ echo "product_out"; } ?>">
                     @if (isset($content->thumbnail))
-                        <div class="image" style="background-image: url({{ asset($content->thumbnail) }})"></div> 
+                        <div class="image zoom-image" data-image="{{ asset($content->image_1) }}" style="background-image: url({{ asset($content->thumbnail) }})"></div> 
                     @else
                         <div class="image" style=""></div>
                     @endif
-                    
                     <h3>{{ $content->name }}</h3>
+                    <div class="values">
+                            @if ($content->old_value)
+                                <div class="value-old"> {{ number_format($content->value) }}</div>
+                                <div class="value">{{ number_format($content->old_value) }}</div>
+                            @else
+                                <div class="value">{{ number_format($content->value) }}</div>
+                            @endif
+                       
+                    </div>
                     <div class="buttons">
                         <div class="row g-1">
                             <div class="col-6 d-grid">

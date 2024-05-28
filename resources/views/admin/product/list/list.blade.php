@@ -4,11 +4,14 @@
             <div class="col-sm-2">
                 Imagen
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 Producto
             </div>
             <div class="col-sm-2">
                 SKU
+            </div>
+            <div class="col-sm-2">
+                Valor
             </div>
             <div class="col-sm-2">
             </div>
@@ -19,16 +22,27 @@
             <div class="row align-items-center ">
                 <div class="col-sm-2">
                     @if (isset($content->thumbnail))
-                        <div class="image"> <img src="{{ asset($content->thumbnail) }}" alt=""></div> 
+                        <div class="image zoom-image" data-image="{{ asset($content->image_1) }}"> <img  src="{{ asset($content->thumbnail) }}" alt=""></div> 
                     @else
                         <div class="image" style=""></div>
                     @endif
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-4">
                     <div>{{ $content->name }}</div>
                 </div>
                 <div class="col-sm-2">
                     <div>{{ $content->sku }}</div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="values">
+                        @if ($content->old_value)
+                            <div class="value-old"> {{ number_format($content->value) }}</div>
+                            <div class="value">{{ number_format($content->old_value) }}</div>
+                        @else
+                            <div class="value">{{ number_format($content->value) }}</div>
+                        @endif
+                   
+                    </div>
                 </div>
                 <div class="col-sm-2">
                     <div class="buttons">

@@ -29,7 +29,7 @@
                 </td>
                 <td>
                     @if (isset($content->thumbnail))
-                        <div class="image-min"> <img src="{{ asset($content->thumbnail) }}" alt=""></div> 
+                        <div class="image-min  zoom-image" data-image="{{ asset($content->image_1) }}"> <img src="{{ asset($content->thumbnail) }}" alt=""></div> 
                     @else
                         <div class="image" style=""></div>
                     @endif

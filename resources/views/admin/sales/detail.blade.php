@@ -114,7 +114,7 @@
                     <div class="col-sm-6">
                       
                       @if ($content->negocio_compra_tipoenvio != 1)
-                      <h2>Información de Envio</h2>
+                        <h2>Información de Envio</h2>
                         <div>
                           <strong>Nombre: </strong>
                           {{$content->negocio_compra_nombre}}
@@ -122,6 +122,10 @@
                         <div>
                           <strong>Correo: </strong>
                           {{$content->negocio_compra_correo}}
+                        </div>
+                        <div>
+                          <strong>Telefono: </strong>
+                          {{$content->negocio_compra_telefono}}
                         </div>
                         <div>
                           <strong>Dirección: </strong>
@@ -134,6 +138,20 @@
                           <div> <strong>Dirección: </strong> {{ $content->campus->address }}  {{ $content->campus->additional }}</div>
                           <div> <strong>Ciudad: </strong> {{ $content->campus->cityname }}</div>
                         @endif
+                        <br>
+                        <h2>Información de Contacto</h2>
+                        <div>
+                          <strong>Nombre: </strong>
+                          {{$content->negocio_compra_nombre}}
+                        </div>
+                        <div>
+                          <strong>Correo: </strong>
+                          {{$content->negocio_compra_correo}}
+                        </div>
+                        <div>
+                          <strong>Telefono: </strong>
+                          {{$content->negocio_compra_telefono}}
+                        </div>
                         
                       @endif
                     </div>

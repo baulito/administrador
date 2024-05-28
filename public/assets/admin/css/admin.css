@@ -356,6 +356,24 @@ input:checked+.slider:before {
   text-transform: uppercase;
 }
 
+.zoom-image{
+  cursor: pointer;
+}
+.values{
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.values .value{
+  color: green;
+  display: inline;
+}
+.values .value-old{
+  color: red;
+  text-decoration: line-through;
+  display: inline;
+  font-size: 10px;
+}
 .list-header{
     font-weight: bold;
     text-align: left;
