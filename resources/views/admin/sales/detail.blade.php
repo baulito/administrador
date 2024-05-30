@@ -35,46 +35,53 @@
               <h2>Información de compra</h2>
               <div class="encabezado-producto">
                 <div class="row">
-                  <div class="col-sm-3">
+                  <div class="col-sm-2 text-end">
+                    
+                  </div>
+                  <div class="col-sm-4">
                     <strong>Producto</strong>
                   </div>
-                  <div class="col-sm-3 text-end">
+                  <div class="col-sm-2 text-end">
                     <strong>V. Unitario</strong>
                   </div>
-                  <div class="col-sm-3 text-end">
+                  <div class="col-sm-2 text-end">
                     <strong>Cantidad</strong>
                   </div>
-                  <div class="col-sm-3 text-end">
+                  <div class="col-sm-2 text-end">
                     <strong>V.Total</strong>
                   </div>
                 </div>
               </div>
+        
               @foreach ($content->items as $item)
               <div class="caja-producto-detalle">
                 <div class="row">
-                  <div  class="col-sm-3">
+                  <div  class="col-sm-1">
+                    <img  class="zoom-image" data-image="{{$item->negocio_compra_item_imagen }}" src="{{ $item->thumbnail }}" height="70" alt="">
+                  </div>
+                  <div  class="col-sm-5">
                     {{ $item->negocio_compra_item_nombre }}
                   </div>
-                  <div class="col-sm-3 text-end">
+                  <div class="col-sm-2 text-end">
                     $ {{ number_format($item->negocio_compra_item_valor) }}
                     
                   </div>
-                  <div  class="col-sm-3 text-end">
+                  <div  class="col-sm-2 text-end">
                     {{ $item->negocio_compra_item_cantidad }}
                   </div>
-                  <div  class="col-sm-3 text-end" >
+                  <div  class="col-sm-2 text-end" >
                     $ {{ number_format($item->negocio_compra_item_valor * $item->negocio_compra_item_cantidad) }}
                   </div>
                 </div>
               </div>
               @endforeach
               <div class="row text-end">
-                <div class="col-sm-9 "><strong>Sub Total</strong></div>
-                <div class="col-sm-3">$ {{ number_format($content->negocio_compra_subtotal) }}</div>
-                <div class="col-sm-9"><strong>Envio</strong></div>
-                <div class="col-sm-3">$ {{ number_format($content->negocio_compra_valor_envio) }}</div>
-                <div class="col-sm-9"><strong>Total</strong></div>
-                <div class="col-sm-3">$ {{ number_format($content->negocio_compra_valor) }}</div>
+                <div class="col-sm-10 "><strong>Sub Total</strong></div>
+                <div class="col-sm-2">$ {{ number_format($content->negocio_compra_subtotal) }}</div>
+                <div class="col-sm-10"><strong>Envio</strong></div>
+                <div class="col-sm-2">$ {{ number_format($content->negocio_compra_valor_envio) }}</div>
+                <div class="col-sm-10"><strong>Total</strong></div>
+                <div class="col-sm-2">$ {{ number_format($content->negocio_compra_valor) }}</div>
               </div>
             </div>
             <div class="text-left">
