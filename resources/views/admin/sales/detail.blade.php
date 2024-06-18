@@ -136,7 +136,7 @@
                         </div>
                         <div>
                           <strong>Dirección: </strong>
-                          {{$content->negocio_compra_direccion}}
+                          {{$content->negocio_compra_direccion}}, {{$content->ciudad}}
                         </div>
                       @else
                         <h2>El Cliente recogera el paquete en: </h2>
